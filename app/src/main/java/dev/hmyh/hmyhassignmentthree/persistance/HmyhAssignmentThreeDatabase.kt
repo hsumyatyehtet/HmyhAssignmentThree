@@ -8,9 +8,11 @@ import androidx.room.TypeConverters
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.TopRatedMovieVO
 import dev.hmyh.hmyhassignmentthree.persistance.daos.LatestMovieDao
 import dev.hmyh.hmyhassignmentthree.persistance.daos.NowPlayingMovieDao
 import dev.hmyh.hmyhassignmentthree.persistance.daos.PopularMovieDao
+import dev.hmyh.hmyhassignmentthree.persistance.daos.TopRatedMovieDao
 import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieTypeConverter
 
 @Database(
@@ -18,7 +20,8 @@ import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieTypeConverte
         LatestMovieVO::class,
 //        NowPlayingMovieListVO::class,
         NowPlayingMovieVO::class,
-        PopularMovieVO::class
+        PopularMovieVO::class,
+        TopRatedMovieVO::class
     ], version = 1, exportSchema = false
 )
 @TypeConverters(
@@ -29,6 +32,7 @@ abstract class HmyhAssignmentThreeDatabase : RoomDatabase() {
     abstract fun latestMovieDao(): LatestMovieDao
     abstract fun nowPlayingMovieDao(): NowPlayingMovieDao
     abstract fun popularMovieDao(): PopularMovieDao
+    abstract fun topRatedMovieDao(): TopRatedMovieDao
 
     companion object {
 

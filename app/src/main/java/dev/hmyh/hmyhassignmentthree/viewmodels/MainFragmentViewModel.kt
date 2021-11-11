@@ -7,6 +7,7 @@ import dev.hmyh.hmyhassignmentthree.data.models.impl.HmyhAssignmentThreeModelImp
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.TopRatedMovieVO
 
 class MainFragmentViewModel : ViewModel() {
 
@@ -15,6 +16,7 @@ class MainFragmentViewModel : ViewModel() {
     private val mLatestMovie: LiveData<LatestMovieVO> = mModel.getLatestMovie()
     private val mNowPlayingMovie: LiveData<NowPlayingMovieVO> = mModel.getNowPlayingMovie()
     private val mPopularMovie: LiveData<PopularMovieVO> = mModel.getPopularMovie()
+    private val mTopRatedMovie: LiveData<TopRatedMovieVO> = mModel.getTopRatedMovie()
 
     fun onUiReady() {
         mModel.loadLatestMovie(
@@ -34,6 +36,12 @@ class MainFragmentViewModel : ViewModel() {
         },onFailure = {
 
         })
+
+        mModel.loadTopRatedMovie(onSuccess = {
+
+        },onFailure = {
+
+        })
     }
 
     fun getLatestMovie(): LiveData<LatestMovieVO> {
@@ -46,6 +54,10 @@ class MainFragmentViewModel : ViewModel() {
 
     fun getPopularMovie():LiveData<PopularMovieVO>{
         return mPopularMovie
+    }
+
+    fun getTopRatedMovie():LiveData<TopRatedMovieVO>{
+        return mTopRatedMovie
     }
 
 }

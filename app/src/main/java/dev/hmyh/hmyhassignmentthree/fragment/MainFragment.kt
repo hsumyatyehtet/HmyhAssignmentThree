@@ -80,6 +80,16 @@ class MainFragment : Fragment() {
                     }
                 }
             })
+
+        mMainFragmentViewModel.getTopRatedMovie()
+            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                it?.let { topRatedMovie->
+                    topRatedMovie.movieList?.let { movieList->
+                        mTopRatedMovieListAdapter.setNewData(movieList)
+                    }
+                }
+            })
+
     }
 
     private fun bindLatestMovieData(latestMovie: LatestMovieVO) {
@@ -109,12 +119,6 @@ class MainFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvTopRatedMovie.layoutManager = topRatedLayoutManager
         rvTopRatedMovie.adapter = mTopRatedMovieListAdapter
-        mTopRatedMovieListAdapter.setNewData(
-            mutableListOf(
-                MovieListVO(), MovieListVO(), MovieListVO(),
-                MovieListVO(), MovieListVO()
-            )
-        )
 
         mUpcomingMovieListAdapter = UpcomingMovieListAdapter()
         val upcomingLayoutManager =

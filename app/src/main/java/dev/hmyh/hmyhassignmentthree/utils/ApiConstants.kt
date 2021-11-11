@@ -3,10 +3,10 @@ package dev.hmyh.hmyhassignmentthree.utils
 const val BASE_URL="https://api.themoviedb.org"
 
 //api
-const val GET_ALL_TOP_RATED_MOVIE="/3/movie/top_rated"
 const val GET_LATEST_MOVIE="/3/movie/latest"
 const val GET_NOW_PLAYING_MOVIE_LIST="/3/movie/now_playing"
 const val GET_POPULAR_MOVIE_LIST="/3/movie/popular"
+const val GET_TOP_RATED_MOVIE="/3/movie/top_rated"
 
 //data
 const val API_KEY_DATA="23f58d0e724c16793d7673aebe58f55f"
