@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -102,6 +103,19 @@ class MainFragment : Fragment() {
                 }
             })
 
+        mMainFragmentViewModel.getNavigateToMovieDetailLiveData().observe(viewLifecycleOwner,
+            androidx.lifecycle.Observer {id->
+                if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED){
+                    id?.let {
+                        findNavController().navigate(
+                            R.id.action_mainFragment_to_detailFragment,
+                            getBundleMovieDetail(it)
+                        )
+                    }
+                }
+
+            })
+
     }
 
     private fun bindLatestMovieData(latestMovie: LatestMovieVO) {
@@ -122,25 +136,25 @@ class MainFragment : Fragment() {
 
     private fun setUpRecyclerView() {
 
-        mNowPlayingMovieListAdapter = NowPlayingMovieListAdapter()
+        mNowPlayingMovieListAdapter = NowPlayingMovieListAdapter(mMainFragmentViewModel)
         val nowPlayingLayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvNowPlayingMovie.layoutManager = nowPlayingLayoutManager
         rvNowPlayingMovie.adapter = mNowPlayingMovieListAdapter
 
-        mPopularMovieListAdapter = PopularMovieListAdapter()
+        mPopularMovieListAdapter = PopularMovieListAdapter(mMainFragmentViewModel)
         val popularLayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvPopularMovie.layoutManager = popularLayoutManager
         rvPopularMovie.adapter = mPopularMovieListAdapter
 
-        mTopRatedMovieListAdapter = TopRatedMovieListAdapter()
+        mTopRatedMovieListAdapter = TopRatedMovieListAdapter(mMainFragmentViewModel)
         val topRatedLayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvTopRatedMovie.layoutManager = topRatedLayoutManager
         rvTopRatedMovie.adapter = mTopRatedMovieListAdapter
 
-        mUpcomingMovieListAdapter = UpcomingMovieListAdapter()
+        mUpcomingMovieListAdapter = UpcomingMovieListAdapter(mMainFragmentViewModel)
         val upcomingLayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvUpcomingMovie.layoutManager = upcomingLayoutManager
