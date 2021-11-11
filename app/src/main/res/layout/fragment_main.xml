@@ -152,7 +152,7 @@
             android:layout_below="@+id/rvTopRatedMovie"
             android:layout_marginStart="@dimen/margin_medium_2"
             android:layout_marginTop="@dimen/margin_large"
-            android:text="Top Rated Movie List"
+            android:text="Upcoming Movie List"
             android:textColor="@color/white"
             android:textSize="@dimen/text_regular_3x"
             android:textStyle="bold" />

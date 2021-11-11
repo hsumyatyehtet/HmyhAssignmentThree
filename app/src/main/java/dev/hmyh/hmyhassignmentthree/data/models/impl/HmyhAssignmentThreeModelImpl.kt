@@ -7,6 +7,7 @@ import dev.hmyh.hmyhassignmentthree.data.models.BaseAppModel
 import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
 import dev.hmyh.hmyhassignmentthree.utils.API_KEY_DATA
 import dev.hmyh.hmyhassignmentthree.utils.subscribeDBWithCompletable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -63,6 +64,28 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
 
     override fun getNowPlayingMovie(): LiveData<NowPlayingMovieVO> {
        return mDatabase.nowPlayingMovieDao().getNowPlayingMovie()
+    }
+
+    @SuppressLint("CheckResult")
+    override fun loadPopularMovie(
+        onSuccess: (popularMovie: PopularMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mApi.loadPopularMovieList(API_KEY_DATA).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it?.let { popularMovie ->
+                    mDatabase.popularMovieDao().insertPopularMovie(popularMovie).subscribeDBWithCompletable()
+                    onSuccess(popularMovie)
+                }
+            }, {
+
+            })
+    }
+
+    override fun getPopularMovie(): LiveData<PopularMovieVO> {
+        return mDatabase.popularMovieDao().getPopularMovie()
     }
 
 }

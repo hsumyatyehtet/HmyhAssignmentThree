@@ -4,8 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "now_playing_movie")
-data class NowPlayingMovieVO(
+@Entity(tableName = "popular_movie")
+data class PopularMovieVO(
 
     @PrimaryKey
     var id: Int=1,
