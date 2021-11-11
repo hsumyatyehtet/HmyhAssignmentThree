@@ -4,6 +4,7 @@ import dev.hmyh.hmyhassignmentthree.data.vos.*
 import dev.hmyh.hmyhassignmentthree.utils.*
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface HmyhAssignmentThreeApi {
@@ -32,5 +33,11 @@ interface HmyhAssignmentThreeApi {
     fun loadUpComingMovieList(
         @Query(PARAM_API_KEY)apiKey: String
     ):Observable<UpComingMovieVO>
+
+    @GET("$GET_MOVIE_DETAIL{movieId}")
+    fun loadMovieDetail(
+        @Path("movieId")movieId: Long,
+        @Query(PARAM_API_KEY)apiKey: String
+    ):Observable<MovieDetailVO>
 
 }

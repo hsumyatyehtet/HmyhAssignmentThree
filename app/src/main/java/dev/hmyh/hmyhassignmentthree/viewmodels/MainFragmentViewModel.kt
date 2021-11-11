@@ -11,7 +11,7 @@ class MainFragmentViewModel : ViewModel() {
 
     private val mModel: HmyhAssignmentThreeModel = HmyhAssignmentThreeModelImpl
 
-    private val mLatestMovie: LiveData<LatestMovieVO> = mModel.getLatestMovie()
+    private var mLatestMovie: LiveData<LatestMovieVO> = mModel.getLatestMovie()
     private val mNowPlayingMovie: LiveData<NowPlayingMovieVO> = mModel.getNowPlayingMovie()
     private val mPopularMovie: LiveData<PopularMovieVO> = mModel.getPopularMovie()
     private val mTopRatedMovie: LiveData<TopRatedMovieVO> = mModel.getTopRatedMovie()

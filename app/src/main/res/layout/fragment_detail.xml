@@ -74,6 +74,7 @@
             app:cardCornerRadius="@dimen/margin_medium"
             app:cardElevation="@dimen/margin_medium">
 
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -84,16 +85,29 @@
             android:layout_marginStart="@dimen/margin_xlarge"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="@dimen/margin_medium_2"
-            app:cardBackgroundColor="@color/black"
+            app:cardBackgroundColor="@color/background_color"
             app:cardCornerRadius="@dimen/margin_medium"
             app:cardElevation="@dimen/margin_medium">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivMovieImageDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_launcher_background" />
+
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvDetailRating"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:layout_below="@+id/rlToolBar"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="32dp"
@@ -111,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/margin_medium_3"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:text="Rating"
                     android:textAllCaps="false"
                     android:textColor="@color/white"

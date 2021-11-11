@@ -13,6 +13,7 @@ import dev.hmyh.hmyhassignmentthree.R
 import dev.hmyh.hmyhassignmentthree.adapter.*
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
+import dev.hmyh.hmyhassignmentthree.utils.PHOTO_PATH
 import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
 import dev.hmyh.hmyhassignmentthree.viewmodels.MainFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -104,9 +105,8 @@ class MainFragment : Fragment() {
     }
 
     private fun bindLatestMovieData(latestMovie: LatestMovieVO) {
-        var photoPath = "http://image.tmdb.org/t/p/w500"
         Glide.with(this)
-            .load(photoPath + latestMovie.posterPath)
+            .load(PHOTO_PATH + latestMovie.posterPath)
             .into(ivLatestMovie)
         tvLatestMovieTitle.text = latestMovie.title ?: ""
 
