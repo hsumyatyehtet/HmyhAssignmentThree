@@ -1,10 +1,7 @@
 package dev.hmyh.hmyhassignmentthree.data.models
 
 import androidx.lifecycle.LiveData
-import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.TopRatedMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.*
 
 interface HmyhAssignmentThreeModel {
 
@@ -35,5 +32,12 @@ interface HmyhAssignmentThreeModel {
     )
 
     fun getTopRatedMovie(): LiveData<TopRatedMovieVO>
+
+    fun loadUpComingMovie(
+        onSuccess: (upComingMovie: UpComingMovieVO)->Unit,
+        onFailure: (String) -> Unit
+    )
+
+    fun getUpComingMovie(): LiveData<UpComingMovieVO>
 
 }

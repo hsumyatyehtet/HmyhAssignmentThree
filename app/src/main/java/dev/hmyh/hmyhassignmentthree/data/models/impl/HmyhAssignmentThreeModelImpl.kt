@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.hmyh.hmyhassignmentthree.data.models.BaseAppModel
 import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
-import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.TopRatedMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.*
 import dev.hmyh.hmyhassignmentthree.utils.API_KEY_DATA
 import dev.hmyh.hmyhassignmentthree.utils.subscribeDBWithCompletable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -109,6 +106,28 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
 
     override fun getTopRatedMovie(): LiveData<TopRatedMovieVO> {
         return mDatabase.topRatedMovieDao().getTopRatedMovie()
+    }
+
+    @SuppressLint("CheckResult")
+    override fun loadUpComingMovie(
+        onSuccess: (upComingMovie: UpComingMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mApi.loadUpComingMovieList(API_KEY_DATA).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it?.let { upComingMovie ->
+                    mDatabase.upcomingMovieDao().insertUpComingMovie(upComingMovie).subscribeDBWithCompletable()
+                    onSuccess(upComingMovie)
+                }
+            }, {
+
+            })
+    }
+
+    override fun getUpComingMovie(): LiveData<UpComingMovieVO> {
+        return mDatabase.upcomingMovieDao().getUpComingMovie()
     }
 
 }

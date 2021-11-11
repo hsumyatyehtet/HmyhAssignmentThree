@@ -90,6 +90,15 @@ class MainFragment : Fragment() {
                 }
             })
 
+        mMainFragmentViewModel.getUpComingMovie()
+            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                it?.let { upComingMovie->
+                    upComingMovie.movieList?.let { movieList->
+                        mUpcomingMovieListAdapter.setNewData(movieList)
+                    }
+                }
+            })
+
     }
 
     private fun bindLatestMovieData(latestMovie: LatestMovieVO) {
@@ -125,12 +134,7 @@ class MainFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvUpcomingMovie.layoutManager = upcomingLayoutManager
         rvUpcomingMovie.adapter = mUpcomingMovieListAdapter
-        mUpcomingMovieListAdapter.setNewData(
-            mutableListOf(
-                MovieListVO(), MovieListVO(), MovieListVO(),
-                MovieListVO(), MovieListVO()
-            )
-        )
+
     }
 
     private fun setCurrentDate() {

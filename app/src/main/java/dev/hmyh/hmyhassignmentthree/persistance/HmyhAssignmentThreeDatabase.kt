@@ -5,14 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.TopRatedMovieVO
-import dev.hmyh.hmyhassignmentthree.persistance.daos.LatestMovieDao
-import dev.hmyh.hmyhassignmentthree.persistance.daos.NowPlayingMovieDao
-import dev.hmyh.hmyhassignmentthree.persistance.daos.PopularMovieDao
-import dev.hmyh.hmyhassignmentthree.persistance.daos.TopRatedMovieDao
+import dev.hmyh.hmyhassignmentthree.data.vos.*
+import dev.hmyh.hmyhassignmentthree.persistance.daos.*
 import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieTypeConverter
 
 @Database(
@@ -21,7 +15,8 @@ import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieTypeConverte
 //        NowPlayingMovieListVO::class,
         NowPlayingMovieVO::class,
         PopularMovieVO::class,
-        TopRatedMovieVO::class
+        TopRatedMovieVO::class,
+        UpComingMovieVO::class
     ], version = 1, exportSchema = false
 )
 @TypeConverters(
@@ -33,6 +28,7 @@ abstract class HmyhAssignmentThreeDatabase : RoomDatabase() {
     abstract fun nowPlayingMovieDao(): NowPlayingMovieDao
     abstract fun popularMovieDao(): PopularMovieDao
     abstract fun topRatedMovieDao(): TopRatedMovieDao
+    abstract fun upcomingMovieDao(): UpcomingMovieDao
 
     companion object {
 

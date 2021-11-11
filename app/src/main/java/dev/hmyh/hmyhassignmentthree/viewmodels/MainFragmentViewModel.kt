@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
 import dev.hmyh.hmyhassignmentthree.data.models.impl.HmyhAssignmentThreeModelImpl
-import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.TopRatedMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.*
+import dev.hmyh.hmyhassignmentthree.persistance.daos.UpcomingMovieDao
 
 class MainFragmentViewModel : ViewModel() {
 
@@ -17,6 +15,7 @@ class MainFragmentViewModel : ViewModel() {
     private val mNowPlayingMovie: LiveData<NowPlayingMovieVO> = mModel.getNowPlayingMovie()
     private val mPopularMovie: LiveData<PopularMovieVO> = mModel.getPopularMovie()
     private val mTopRatedMovie: LiveData<TopRatedMovieVO> = mModel.getTopRatedMovie()
+    private val mUpcomingMovie: LiveData<UpComingMovieVO> = mModel.getUpComingMovie()
 
     fun onUiReady() {
         mModel.loadLatestMovie(
@@ -42,6 +41,13 @@ class MainFragmentViewModel : ViewModel() {
         },onFailure = {
 
         })
+
+        mModel.loadUpComingMovie(onSuccess = {
+
+        },
+        onFailure = {
+
+        })
     }
 
     fun getLatestMovie(): LiveData<LatestMovieVO> {
@@ -58,6 +64,10 @@ class MainFragmentViewModel : ViewModel() {
 
     fun getTopRatedMovie():LiveData<TopRatedMovieVO>{
         return mTopRatedMovie
+    }
+
+    fun getUpComingMovie(): LiveData<UpComingMovieVO>{
+        return mUpcomingMovie
     }
 
 }
