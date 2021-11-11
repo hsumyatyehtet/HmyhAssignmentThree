@@ -64,6 +64,12 @@ class DetailFragment: Fragment() {
         tvMovieDetailTitle.text = movieDetail.title
         tvMovieDetailRating.text = movieDetail.voteAverage.toString()
         tvMovieDetailYear.text = getApiMovieDate(movieDetail.releaseDate.toString())
+
+        var genreList = movieDetail.genreList?.map { it.name }
+        var genre = genreList?.joinToString(", ")
+        tvGenre.text = genre ?: ""
+
+        tvOverview.text = movieDetail.overView ?: ""
     }
 
     private fun setUpOnUiReady() {

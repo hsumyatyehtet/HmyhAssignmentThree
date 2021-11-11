@@ -66,6 +66,7 @@
         </RelativeLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cvDetailBg"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_below="@+id/rlToolBar"
@@ -153,7 +154,7 @@
         <RelativeLayout
             android:id="@+id/cvDetailTitle"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/cvDetailRating"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/margin_medium_2"
@@ -184,6 +185,46 @@
 
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvLblOverview"
+            android:layout_below="@+id/cvDetailBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overview"
+            android:textAllCaps="false"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_regular_3x" />
+
+        <TextView
+            android:id="@+id/tvGenre"
+            android:layout_below="@+id/tvLblOverview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action"
+            android:textAllCaps="false"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:textColor="@color/text_genre_color"
+            android:textSize="@dimen/text_regular" />
+
+        <TextView
+            android:id="@+id/tvOverview"
+            android:layout_below="@+id/tvGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overview"
+            android:textAllCaps="false"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_regular_2x" />
 
     </RelativeLayout>
 

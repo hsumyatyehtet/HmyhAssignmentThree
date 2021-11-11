@@ -12,5 +12,7 @@
     <color name="background_color">#0e1f30</color>
     <color name="date_txt_color">#007c4a</color>
     <color name="rating_bg">#e1c019</color>
+    <color name="text_genre_color">#16795a</color>
+
 
 </resources>
