@@ -1,7 +1,9 @@
 package dev.hmyh.hmyhassignmentthree.network
 
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
 import dev.hmyh.hmyhassignmentthree.utils.GET_LATEST_MOVIE
+import dev.hmyh.hmyhassignmentthree.utils.GET_NOW_PLAYING_MOVIE_LIST
 import dev.hmyh.hmyhassignmentthree.utils.PARAM_API_KEY
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -13,5 +15,10 @@ interface HmyhAssignmentThreeApi {
     fun loadLatestMovie(
         @Query(PARAM_API_KEY)apkKey: String
     ):Observable<LatestMovieVO>
+
+    @GET(GET_NOW_PLAYING_MOVIE_LIST)
+    fun loadNowPlayingMovieList(
+        @Query(PARAM_API_KEY)apiKey: String
+    ):Observable<NowPlayingMovieVO>
 
 }

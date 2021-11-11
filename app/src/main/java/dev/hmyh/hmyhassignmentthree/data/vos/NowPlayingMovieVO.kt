@@ -4,7 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class TopRatedMovieVO(
+@Entity(tableName = "now_playing_movie")
+data class NowPlayingMovieVO(
 
     @PrimaryKey
     var id: Int=1,
@@ -13,7 +14,7 @@ data class TopRatedMovieVO(
     var page: Int? = null,
 
     @SerializedName("results")
-    var movieList: MutableList<MovieListVO>?=null,
+    var movieList: MutableList<NowPlayingMovieListVO>?=null,
 
     @SerializedName("total_pages")
     var totalPage: Long?=null,

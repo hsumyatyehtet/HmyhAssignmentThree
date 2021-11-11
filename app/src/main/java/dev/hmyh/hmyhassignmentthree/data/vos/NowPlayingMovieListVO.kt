@@ -5,8 +5,8 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-//@Entity(tableName = "movie_list",indices = [Index(value = ["id"])])
-data class MovieListVO(
+@Entity(tableName = "now_playing_movie_list",indices = [Index(value = ["id"])])
+data class NowPlayingMovieListVO(
 
     @PrimaryKey
     @SerializedName("id")

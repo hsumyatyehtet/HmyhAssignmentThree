@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import dev.hmyh.hmyhassignmentthree.data.models.BaseAppModel
 import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
 import dev.hmyh.hmyhassignmentthree.utils.API_KEY_DATA
 import dev.hmyh.hmyhassignmentthree.utils.subscribeDBWithCompletable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -37,6 +38,31 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
 
     override fun getLatestMovie(): LiveData<LatestMovieVO> {
         return mDatabase.latestMovieDao().getLatestMovie()
+    }
+
+    @SuppressLint("CheckResult")
+    override fun loadNowPlayingMovie(
+        onSuccess: (nowPlayingMovie: NowPlayingMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ): LiveData<NowPlayingMovieVO> {
+        var liveData=MutableLiveData<NowPlayingMovieVO>()
+
+        mApi.loadNowPlayingMovieList(API_KEY_DATA).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it?.let { nowPlayingMovie ->
+                    mDatabase.nowPlayingMovieDao().insertNowPlayingMovie(nowPlayingMovie).subscribeDBWithCompletable()
+                    onSuccess(nowPlayingMovie)
+                }
+            }, {
+
+            })
+        return liveData
+    }
+
+    override fun getNowPlayingMovie(): LiveData<NowPlayingMovieVO> {
+       return mDatabase.nowPlayingMovieDao().getNowPlayingMovie()
     }
 
 }

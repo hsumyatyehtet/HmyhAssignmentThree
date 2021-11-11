@@ -1,17 +1,16 @@
 package dev.hmyh.hmyhassignmentthree.view.hoder
 
 import android.view.View
-import com.bumptech.glide.Glide
-import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
+import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieListVO
 
 class UpcomingMovieListViewHolder(itemView: View):
-    BaseViewHolder<MovieListVO>(itemView) {
+    BaseViewHolder<NowPlayingMovieListVO>(itemView) {
 
     init {
 
     }
 
-    override fun bindData(data: MovieListVO) {
+    override fun bindData(data: NowPlayingMovieListVO) {
         mData = data
 
 //        var photoPath ="http://image.tmdb.org/t/p/w500"

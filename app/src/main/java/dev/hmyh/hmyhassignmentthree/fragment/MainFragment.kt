@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import dev.hmyh.hmyhassignmentthree.R
 import dev.hmyh.hmyhassignmentthree.adapter.*
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
-import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
+import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieListVO
 import dev.hmyh.hmyhassignmentthree.viewmodels.MainFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.text.SimpleDateFormat
@@ -60,6 +60,13 @@ class MainFragment : Fragment() {
                     bindLatestMovieData(latestMovie)
                 }
             })
+
+        mMainFragmentViewModel.getNowPlayingMovie()
+            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                it.movieList?.let { nowPlayingMovieList->
+                    mNowPlayingMovieListAdapter.setNewData(nowPlayingMovieList )
+                }
+            })
     }
 
     private fun bindLatestMovieData(latestMovie: LatestMovieVO) {
@@ -77,12 +84,6 @@ class MainFragment : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvNowPlayingMovie.layoutManager = nowPlayingLayoutManager
         rvNowPlayingMovie.adapter = mNowPlayingMovieListAdapter
-        mNowPlayingMovieListAdapter.setNewData(
-            mutableListOf(
-                MovieListVO(), MovieListVO(), MovieListVO(),
-                MovieListVO(), MovieListVO()
-            )
-        )
 
         mPopularMovieListAdapter = PopularMovieListAdapter()
         val popularLayoutManager =
@@ -91,8 +92,8 @@ class MainFragment : Fragment() {
         rvPopularMovie.adapter = mPopularMovieListAdapter
         mPopularMovieListAdapter.setNewData(
             mutableListOf(
-                MovieListVO(), MovieListVO(), MovieListVO(),
-                MovieListVO(), MovieListVO()
+                NowPlayingMovieListVO(), NowPlayingMovieListVO(), NowPlayingMovieListVO(),
+                NowPlayingMovieListVO(), NowPlayingMovieListVO()
             )
         )
 
@@ -103,8 +104,8 @@ class MainFragment : Fragment() {
         rvTopRatedMovie.adapter = mTopRatedMovieListAdapter
         mTopRatedMovieListAdapter.setNewData(
             mutableListOf(
-                MovieListVO(), MovieListVO(), MovieListVO(),
-                MovieListVO(), MovieListVO()
+                NowPlayingMovieListVO(), NowPlayingMovieListVO(), NowPlayingMovieListVO(),
+                NowPlayingMovieListVO(), NowPlayingMovieListVO()
             )
         )
 
@@ -115,8 +116,8 @@ class MainFragment : Fragment() {
         rvUpcomingMovie.adapter = mUpcomingMovieListAdapter
         mUpcomingMovieListAdapter.setNewData(
             mutableListOf(
-                MovieListVO(), MovieListVO(), MovieListVO(),
-                MovieListVO(), MovieListVO()
+                NowPlayingMovieListVO(), NowPlayingMovieListVO(), NowPlayingMovieListVO(),
+                NowPlayingMovieListVO(), NowPlayingMovieListVO()
             )
         )
     }
