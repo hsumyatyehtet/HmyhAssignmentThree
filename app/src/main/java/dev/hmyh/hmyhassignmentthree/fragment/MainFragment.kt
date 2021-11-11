@@ -13,6 +13,7 @@ import dev.hmyh.hmyhassignmentthree.R
 import dev.hmyh.hmyhassignmentthree.adapter.*
 import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
+import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
 import dev.hmyh.hmyhassignmentthree.viewmodels.MainFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.text.SimpleDateFormat
@@ -110,9 +111,11 @@ class MainFragment : Fragment() {
         tvLatestMovieTitle.text = latestMovie.title ?: ""
 
         ivLatestMovie.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_mainFragment_to_detailFragment
-            )
+            latestMovie.id?.let { movieId->
+                findNavController().navigate(
+                    R.id.action_mainFragment_to_detailFragment, getBundleMovieDetail(movieId)
+                )
+            }
         }
 
     }

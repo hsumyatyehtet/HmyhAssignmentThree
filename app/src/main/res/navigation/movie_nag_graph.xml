@@ -24,6 +24,10 @@
         android:name="dev.hmyh.hmyhassignmentthree.fragment.DetailFragment"
         android:label="DetailFragment" >
 
+        <argument
+            android:name="movie_id"
+            app:argType="long" />
+
     </fragment>
 
 </navigation>
