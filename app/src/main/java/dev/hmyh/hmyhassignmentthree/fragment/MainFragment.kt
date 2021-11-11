@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import dev.hmyh.hmyhassignmentthree.R
@@ -107,6 +108,13 @@ class MainFragment : Fragment() {
             .load(photoPath + latestMovie.posterPath)
             .into(ivLatestMovie)
         tvLatestMovieTitle.text = latestMovie.title ?: ""
+
+        ivLatestMovie.setOnClickListener {
+            findNavController().navigate(
+                R.id.action_mainFragment_to_detailFragment
+            )
+        }
+
     }
 
     private fun setUpRecyclerView() {
