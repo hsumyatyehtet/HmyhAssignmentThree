@@ -63,9 +63,13 @@ class MainFragment : Fragment() {
 
         mMainFragmentViewModel.getNowPlayingMovie()
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                it.movieList?.let { nowPlayingMovieList->
-                    mNowPlayingMovieListAdapter.setNewData(nowPlayingMovieList )
+                it?.let { nowPlayingMovieVO ->
+                    nowPlayingMovieVO.movieList?.let {
+                            nowPlayingMovieList->
+                        mNowPlayingMovieListAdapter.setNewData(nowPlayingMovieList)
+                    }
                 }
+
             })
     }
 
