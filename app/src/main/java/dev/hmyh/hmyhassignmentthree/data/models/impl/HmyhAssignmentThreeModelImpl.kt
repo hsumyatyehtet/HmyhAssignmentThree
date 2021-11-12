@@ -146,8 +146,8 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
             })
     }
 
-    override fun getMovieVideo(): LiveData<MovieVideoVO> {
-       return mDatabase.movieVideoDao().getMovieVideo()
+    override fun getMovieVideo(movieId: Long): LiveData<MovieVideoVO> {
+       return mDatabase.movieVideoDao().getMovieVideo(movieId)
     }
 
 }

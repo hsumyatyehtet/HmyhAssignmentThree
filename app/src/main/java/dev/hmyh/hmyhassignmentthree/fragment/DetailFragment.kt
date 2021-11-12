@@ -57,7 +57,7 @@ class DetailFragment: Fragment() {
             }
         })
 
-        mDetailFragmentViewModel.getMovieVideo().observe(viewLifecycleOwner, Observer {
+        mDetailFragmentViewModel.getMovieVideo(movieId).observe(viewLifecycleOwner, Observer {
             it?.let { movieVideo->
                 movieVideo.movieVideoList?.let { vidoeList->
                     bindMovieVideoList(vidoeList)
@@ -70,13 +70,19 @@ class DetailFragment: Fragment() {
     private fun bindMovieVideoList(videoList: List<MovieVideoListVO>) {
 
         rlPlayTrailer.setOnClickListener {
-            videoList[0].key?.let { key->
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("http://www.youtube.com/watch?v=$key")
+
+            if (videoList.isEmpty()){
+
+            }
+            else{
+                videoList[0].key?.let { key->
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("http://www.youtube.com/watch?v=$key")
+                        )
                     )
-                )
+                }
             }
         }
 

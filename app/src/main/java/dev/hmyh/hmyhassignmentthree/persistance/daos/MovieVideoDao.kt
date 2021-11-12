@@ -14,7 +14,7 @@ interface MovieVideoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovieVideo(movieVideo: MovieVideoVO): Completable
 
-    @Query("SELECT * from movie_video")
-    fun getMovieVideo(): LiveData<MovieVideoVO>
+    @Query("SELECT * from movie_video where id =:movieId")
+    fun getMovieVideo(movieId: Long): LiveData<MovieVideoVO>
 
 }

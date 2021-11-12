@@ -47,6 +47,6 @@ interface HmyhAssignmentThreeModel {
         onFailure: (String) -> Unit
     )
 
-    fun getMovieVideo(): LiveData<MovieVideoVO>
+    fun getMovieVideo(movieId: Long): LiveData<MovieVideoVO>
 
 }
