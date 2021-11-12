@@ -10,6 +10,7 @@ import dev.hmyh.hmyhassignmentthree.persistance.daos.*
 import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.GenreTypeConverter
 import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieTypeConverter
 import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieVideoTypeConverter
+import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.ProductionCountryTypeConverter
 
 @Database(
     entities = [
@@ -17,14 +18,15 @@ import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieVideoTypeCon
         PopularMovieVO::class,
         TopRatedMovieVO::class,
         UpComingMovieVO::class,
-    MovieDetailVO::class,
-    MovieVideoVO::class
+        MovieDetailVO::class,
+        MovieVideoVO::class
     ], version = 1, exportSchema = false
 )
 @TypeConverters(
     MovieTypeConverter::class,
     GenreTypeConverter::class,
-    MovieVideoTypeConverter::class
+    MovieVideoTypeConverter::class,
+    ProductionCountryTypeConverter::class
 )
 abstract class HmyhAssignmentThreeDatabase : RoomDatabase() {
 

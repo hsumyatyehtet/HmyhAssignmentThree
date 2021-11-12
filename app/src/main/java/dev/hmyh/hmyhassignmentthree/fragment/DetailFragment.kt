@@ -20,6 +20,7 @@ import dev.hmyh.hmyhassignmentthree.viewmodels.DetailFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 import android.content.Intent
 import android.net.Uri
+import dev.hmyh.hmyhassignmentthree.utils.getApiMovieDatePremier
 
 
 class DetailFragment: Fragment() {
@@ -97,6 +98,13 @@ class DetailFragment: Fragment() {
         tvGenre.text = genre ?: ""
 
         tvOverview.text = movieDetail.overView ?: ""
+        tvOriginalTitle.text = movieDetail.originalTitle ?: ""
+
+        var productionCountryList = movieDetail.productCountryList?.map { it.name }
+        var productCountry = productionCountryList?.joinToString(", ")
+        tvProduction.text = productCountry ?: ""
+
+        tvPremiere.text = getApiMovieDatePremier(movieDetail.releaseDate.toString())
 
         rlGoHome.setOnClickListener {
             movieDetail.homePage?.let { homePage->

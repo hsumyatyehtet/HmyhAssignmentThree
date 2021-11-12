@@ -33,6 +33,12 @@ data class MovieDetailVO(
     var title: String?=null,
 
     @SerializedName("vote_average")
-    var voteAverage: String?=null
+    var voteAverage: String?=null,
+
+    @SerializedName("original_title")
+    var originalTitle: String?=null,
+
+    @SerializedName("production_countries")
+    var productCountryList: List<ProductionCountryVO>?=null
 
 )

@@ -268,3 +268,21 @@ fun getApiMovieDate(inputDate: String?,format: String = FORMAT_YEAR): String{
     }
 }
 
+fun getApiMovieDatePremier(inputDate: String?,format: String =FORMAT_DD_MMMM_YYY): String{
+
+    if (inputDate == null){
+        return ""
+    }
+    else{
+        try {
+            val simpleDateFormat = SimpleDateFormat(FORMAT_YYY_MM_DD,Locale.US)
+            val date = simpleDateFormat.parse(inputDate)
+
+            val formatShowData = SimpleDateFormat(format, Locale.US)
+            return formatShowData.format(date)
+        }catch (e: ParseException){
+            return ""
+        }
+    }
+}
+

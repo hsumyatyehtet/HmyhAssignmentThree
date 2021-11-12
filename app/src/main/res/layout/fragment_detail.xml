@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -65,250 +65,334 @@
 
         </RelativeLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvDetailBg"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_below="@+id/rlToolBar"
-            android:layout_marginStart="@dimen/margin_medium_2"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="@dimen/margin_medium_2"
-            app:cardCornerRadius="@dimen/margin_medium"
-            app:cardElevation="@dimen/margin_medium" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvDetailProfile"
-            android:layout_width="150dp"
-            android:layout_height="220dp"
-            android:layout_below="@+id/rlToolBar"
-            android:layout_marginStart="@dimen/margin_xlarge"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="@dimen/margin_medium_2"
-            app:cardBackgroundColor="@color/background_color"
-            app:cardCornerRadius="@dimen/margin_medium"
-            app:cardElevation="@dimen/margin_medium_2">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rlToolBar">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="48dp">
 
-                <ImageView
-                    android:id="@+id/ivMovieImageDetail"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvDetailBg"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:layout_height="300dp"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="64dp"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    app:cardCornerRadius="@dimen/margin_medium"
+                    app:cardElevation="@dimen/margin_medium" />
 
-            </RelativeLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvDetailProfile"
+                    android:layout_width="150dp"
+                    android:layout_height="220dp"
+                    android:layout_marginStart="@dimen/margin_xlarge"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    app:cardBackgroundColor="@color/background_color"
+                    app:cardCornerRadius="@dimen/margin_medium"
+                    app:cardElevation="@dimen/margin_medium_2">
 
-        </androidx.cardview.widget.CardView>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvDetailRating"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_below="@+id/rlToolBar"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="@dimen/margin_xlarge"
-            app:cardBackgroundColor="@color/rating_bg"
-            app:cardCornerRadius="@dimen/margin_medium"
-            app:cardElevation="@dimen/margin_medium_2">
+                        <ImageView
+                            android:id="@+id/ivMovieImageDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_launcher_background" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tvMovieDetailRatingLbl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:text="Rating"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_small"
-                    android:textStyle="bold" />
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/tvMovieDetailRating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvMovieDetailRatingLbl"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:text="6.6"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_regular_2x" />
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvDetailRating"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="@dimen/margin_xlarge"
+                    app:cardBackgroundColor="@color/rating_bg"
+                    app:cardCornerRadius="@dimen/margin_medium"
+                    app:cardElevation="@dimen/margin_medium_2">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvMovieDetailRatingLbl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/margin_medium"
+                            android:text="Rating"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_small"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvMovieDetailRating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvMovieDetailRatingLbl"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:text="6.6"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_regular_2x" />
 
 
-            </RelativeLayout>
+                    </RelativeLayout>
 
-        </androidx.cardview.widget.CardView>
-
-        <RelativeLayout
-            android:id="@+id/cvDetailTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cvDetailRating"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/margin_medium_2"
-            android:layout_marginEnd="@dimen/margin_xlarge"
-            android:layout_toEndOf="@+id/cvDetailProfile"
-            android:elevation="15dp">
-
-            <TextView
-                android:id="@+id/tvMovieDetailTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_regular_3x"
-                android:textStyle="bold"
-                tools:text="Venom: Let There Be Camage" />
-
-            <TextView
-                android:id="@+id/tvMovieDetailYear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvMovieDetailTitle"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:text="2021"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_regular" />
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_below="@id/cvDetailProfile"
-            android:layout_marginStart="@dimen/margin_medium_2"
-            android:layout_marginTop="@dimen/margin_medium_2"
-            android:layout_marginEnd="@dimen/margin_medium_2"
-            android:elevation="15dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <RelativeLayout
-                android:id="@+id/rlPlayTrailer"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/margin_medium_2"
-                android:layout_marginEnd="@dimen/margin_small"
-                android:layout_weight="1"
-                android:background="@drawable/movie_play_bg"
-                android:elevation="@dimen/margin_small">
+                </androidx.cardview.widget.CardView>
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:id="@+id/cvDetailTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
+                    android:layout_below="@+id/cvDetailRating"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_xlarge"
+                    android:layout_toEndOf="@+id/cvDetailProfile"
+                    android:elevation="15dp">
 
-                    <ImageView
-                        android:id="@+id/ivPlay"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_baseline_play_arrow" />
+                    <TextView
+                        android:id="@+id/tvMovieDetailTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular_3x"
+                        android:textStyle="bold"
+                        tools:text="Venom: Let There Be Camage" />
+
+                    <TextView
+                        android:id="@+id/tvMovieDetailYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvMovieDetailTitle"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:text="2021"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_regular" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/cvDetailProfile"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:elevation="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:id="@+id/rlPlayTrailer"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:layout_weight="1"
+                        android:background="@drawable/movie_play_bg"
+                        android:elevation="@dimen/margin_small">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/ivPlay"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_baseline_play_arrow" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/margin_medium"
+                                android:layout_toEndOf="@id/ivPlay"
+                                android:text="Play Trailer"
+                                android:textColor="@color/white" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlGoHome"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:layout_weight="1"
+                        android:background="@drawable/movie_go_home_bg"
+                        android:elevation="@dimen/margin_small">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/ivHome"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_baseline_home"
+                                app:tint="@color/black" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/margin_medium"
+                                android:layout_toEndOf="@id/ivHome"
+                                android:text="Home"
+                                android:textColor="@color/black" />
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cvDetailBg"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvGenre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_medium_3"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="Action"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_genre_color"
+                        android:textSize="@dimen/text_regular" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/margin_medium"
-                        android:layout_toEndOf="@id/ivPlay"
-                        android:text="Play Trailer"
-                        android:textColor="@color/white" />
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_medium_3"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="Original Title :"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular"/>
 
-                </RelativeLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlGoHome"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/margin_small"
-                android:layout_marginEnd="@dimen/margin_medium_2"
-                android:layout_weight="1"
-                android:background="@drawable/movie_go_home_bg"
-                android:elevation="@dimen/margin_small">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
-
-                    <ImageView
-                        android:id="@+id/ivHome"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_baseline_home"
-                        app:tint="@color/black" />
+                    <TextView
+                        android:id="@+id/tvOriginalTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="original title"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular_2x" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/margin_medium"
-                        android:layout_toEndOf="@id/ivHome"
-                        android:text="Home"
-                        android:textColor="@color/black" />
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_medium_2"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="Production Country :"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular" />
 
-                </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tvProduction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="US"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular_2x" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_medium_2"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="Premiere :"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular" />
+
+                    <TextView
+                        android:id="@+id/tvPremiere"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="8 Nov, 2016"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular_2x" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_medium_2"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:text="Overview :"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular" />
+
+                    <TextView
+                        android:id="@+id/tvOverview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium_2"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginEnd="@dimen/margin_medium_2"
+                        android:layout_marginBottom="@dimen/margin_large"
+                        android:text="Overview"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular_2x" />
+
+                </LinearLayout>
 
             </RelativeLayout>
 
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvLblOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cvDetailBg"
-            android:layout_marginStart="@dimen/margin_medium_2"
-            android:layout_marginTop="@dimen/margin_xlarge"
-            android:layout_marginEnd="@dimen/margin_medium_2"
-            android:text="Overview"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_regular_3x" />
-
-        <TextView
-            android:id="@+id/tvGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvLblOverview"
-            android:layout_marginStart="@dimen/margin_medium_2"
-            android:layout_marginTop="@dimen/margin_medium_2"
-            android:layout_marginEnd="@dimen/margin_medium_2"
-            android:text="Action"
-            android:textAllCaps="false"
-            android:textColor="@color/text_genre_color"
-            android:textSize="@dimen/text_regular" />
-
-        <TextView
-            android:id="@+id/tvOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvGenre"
-            android:layout_marginStart="@dimen/margin_medium_2"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:layout_marginEnd="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_large"
-            android:text="Overview"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_regular_2x" />
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 
-</androidx.core.widget.NestedScrollView>
+</RelativeLayout>
