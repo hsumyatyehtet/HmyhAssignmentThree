@@ -114,12 +114,23 @@ class DetailFragment: Fragment() {
 
         rlGoHome.setOnClickListener {
             movieDetail.homePage?.let { homePage->
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("$homePage")
+
+                if (homePage.isEmpty()){
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("http://www.google.com")
+                        )
                     )
-                )
+                }
+                else{
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("$homePage")
+                        )
+                    )
+                }
             }
         }
     }

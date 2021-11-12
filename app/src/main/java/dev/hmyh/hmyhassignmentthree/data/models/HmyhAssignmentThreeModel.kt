@@ -49,4 +49,10 @@ interface HmyhAssignmentThreeModel {
 
     fun getMovieVideo(movieId: Long): LiveData<MovieVideoVO>
 
+    fun loadSearchMovie(
+        search: String,
+        onSuccess: (searchMovieVO: SearchMovieVO)->Unit,
+        onFailure: (String) -> Unit
+    )
+
 }

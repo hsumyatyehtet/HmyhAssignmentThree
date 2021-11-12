@@ -4,12 +4,22 @@
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_search"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:id="@+id/ivSearch"/>
+
     <TextView
         android:id="@+id/tvCurrentDate"
+        android:layout_below="@+id/ivSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium_2"
-        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_small"
         android:text="date"
         android:textColor="@color/date_txt_color"
         android:textSize="@dimen/text_regular_2x"
@@ -18,7 +28,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_medium"
         android:layout_below="@+id/tvCurrentDate">
 
         <RelativeLayout
@@ -30,7 +40,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_medium_2"
-                android:layout_marginTop="@dimen/margin_medium"
                 android:text="Now Playing Movie List"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_3x"

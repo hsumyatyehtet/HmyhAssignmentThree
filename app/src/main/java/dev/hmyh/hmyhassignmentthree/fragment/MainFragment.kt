@@ -43,9 +43,16 @@ class MainFragment : Fragment() {
         setUpViewModel()
         setCurrentDate()
         setUpRecyclerView()
+        setUpListener()
 
         setUpOnUiReady()
         setUpDataObservations()
+    }
+
+    private fun setUpListener() {
+        ivSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_searchFragment)
+        }
     }
 
     private fun setUpViewModel() {

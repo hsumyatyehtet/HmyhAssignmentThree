@@ -41,4 +41,10 @@ interface HmyhAssignmentThreeApi {
         @Query(PARAM_API_KEY)apiKey: String
     ):Observable<MovieVideoVO>
 
+    @GET(GET_SEARCH_MOVIE)
+    fun loadSearchMovie(
+        @Query(PARAM_API_KEY)apiKey: String,
+        @Query(PARAM_QUERY)query: String
+    ):Observable<SearchMovieVO>
+
 }

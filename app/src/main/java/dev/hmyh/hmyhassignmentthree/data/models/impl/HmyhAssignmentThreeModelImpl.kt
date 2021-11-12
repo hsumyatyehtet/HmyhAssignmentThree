@@ -150,4 +150,22 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
        return mDatabase.movieVideoDao().getMovieVideo(movieId)
     }
 
+    @SuppressLint("CheckResult")
+    override fun loadSearchMovie(
+        search: String,
+        onSuccess: (searchMovieVO: SearchMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mApi.loadSearchMovie(API_KEY_DATA,search).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it?.let { searchMovieVideo ->
+                    onSuccess(searchMovieVideo)
+                }
+            }, {
+
+            })
+    }
+
 }
