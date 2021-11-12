@@ -23,7 +23,7 @@ import android.net.Uri
 import dev.hmyh.hmyhassignmentthree.utils.getApiMovieDatePremier
 
 
-class DetailFragment: Fragment() {
+class DetailFragment: BaseFragment() {
 
     private lateinit var mDetailFragmentViewModel: DetailFragmentViewModel
     private val args: DetailFragmentArgs by navArgs()
@@ -73,6 +73,9 @@ class DetailFragment: Fragment() {
 
             if (videoList.isEmpty()){
 
+                showAlertDialog("Hmyh Assignment Three","The video isn't available to play"){
+
+                }
             }
             else{
                 videoList[0].key?.let { key->
@@ -116,12 +119,17 @@ class DetailFragment: Fragment() {
             movieDetail.homePage?.let { homePage->
 
                 if (homePage.isEmpty()){
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("http://www.google.com")
-                        )
-                    )
+//                    startActivity(
+//                        Intent(
+//                            Intent.ACTION_VIEW,
+//                            Uri.parse("http://www.google.com")
+//                        )
+//                    )
+
+                    showAlertDialog("Hmyh Assignment Three","There is no home page"){
+
+                    }
+
                 }
                 else{
                     startActivity(

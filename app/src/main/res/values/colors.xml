@@ -14,5 +14,6 @@
     <color name="rating_bg">#e1c019</color>
     <color name="text_genre_color">#16795a</color>
 
+    <color name="colorTransparent">@android:color/transparent</color>
 
 </resources>
