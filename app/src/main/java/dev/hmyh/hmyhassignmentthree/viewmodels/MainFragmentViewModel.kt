@@ -13,7 +13,6 @@ class MainFragmentViewModel : ViewModel(),MovieListDelegate {
 
     private val mModel: HmyhAssignmentThreeModel = HmyhAssignmentThreeModelImpl
 
-    private var mLatestMovie: LiveData<LatestMovieVO> = mModel.getLatestMovie()
     private val mNowPlayingMovie: LiveData<NowPlayingMovieVO> = mModel.getNowPlayingMovie()
     private val mPopularMovie: LiveData<PopularMovieVO> = mModel.getPopularMovie()
     private val mTopRatedMovie: LiveData<TopRatedMovieVO> = mModel.getTopRatedMovie()
@@ -22,7 +21,6 @@ class MainFragmentViewModel : ViewModel(),MovieListDelegate {
     private val navigateToMovieDetail: MutableLiveData<Long> = MutableLiveData()
 
     fun onUiReady() {
-        mModel.loadLatestMovie(onSuccess = {}, onFailure = {})
 
         mModel.loadNowPlayingMovie(onSuccess = {},onFailure = {})
 
@@ -32,10 +30,6 @@ class MainFragmentViewModel : ViewModel(),MovieListDelegate {
 
         mModel.loadUpComingMovie(onSuccess = {}, onFailure = {})
 
-    }
-
-    fun getLatestMovie(): LiveData<LatestMovieVO> {
-        return mLatestMovie
     }
 
     fun getNowPlayingMovie(): LiveData<NowPlayingMovieVO>{

@@ -14,32 +14,6 @@ import io.reactivex.schedulers.Schedulers
 object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
 
     @SuppressLint("CheckResult")
-    override fun loadLatestMovie(
-        onSuccess: (latestMovie: LatestMovieVO) -> Unit,
-        onFailure: (String) -> Unit
-    ):LiveData<LatestMovieVO> {
-
-        var liveData=MutableLiveData<LatestMovieVO>()
-
-        mApi.loadLatestMovie(API_KEY_DATA).subscribeOn(
-            Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                it?.let { latestMovie ->
-                    mDatabase.latestMovieDao().insertLatestMovie(latestMovie).subscribeDBWithCompletable()
-                    onSuccess(latestMovie)
-                }
-            }, {
-
-            })
-        return liveData
-    }
-
-    override fun getLatestMovie(): LiveData<LatestMovieVO> {
-        return mDatabase.latestMovieDao().getLatestMovie()
-    }
-
-    @SuppressLint("CheckResult")
     override fun loadNowPlayingMovie(
         onSuccess: (nowPlayingMovie: NowPlayingMovieVO) -> Unit,
         onFailure: (String) -> Unit

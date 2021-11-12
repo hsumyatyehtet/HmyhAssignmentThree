@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import dev.hmyh.hmyhassignmentthree.R
 import dev.hmyh.hmyhassignmentthree.adapter.*
-import dev.hmyh.hmyhassignmentthree.data.vos.LatestMovieVO
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
 import dev.hmyh.hmyhassignmentthree.utils.PHOTO_PATH
 import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
@@ -58,12 +57,6 @@ class MainFragment : Fragment() {
     }
 
     private fun setUpDataObservations() {
-        mMainFragmentViewModel.getLatestMovie()
-            .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-                it?.let { latestMovie ->
-                    bindLatestMovieData(latestMovie)
-                }
-            })
 
         mMainFragmentViewModel.getNowPlayingMovie()
             .observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -115,22 +108,6 @@ class MainFragment : Fragment() {
                 }
 
             })
-
-    }
-
-    private fun bindLatestMovieData(latestMovie: LatestMovieVO) {
-        Glide.with(this)
-            .load(PHOTO_PATH + latestMovie.posterPath)
-            .into(ivLatestMovie)
-        tvLatestMovieTitle.text = latestMovie.title ?: ""
-
-        ivLatestMovie.setOnClickListener {
-            latestMovie.id?.let { movieId->
-                findNavController().navigate(
-                    R.id.action_mainFragment_to_detailFragment, getBundleMovieDetail(movieId)
-                )
-            }
-        }
 
     }
 

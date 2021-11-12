@@ -13,7 +13,6 @@ import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieVideoTypeCon
 
 @Database(
     entities = [
-        LatestMovieVO::class,
         NowPlayingMovieVO::class,
         PopularMovieVO::class,
         TopRatedMovieVO::class,
@@ -29,7 +28,6 @@ import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieVideoTypeCon
 )
 abstract class HmyhAssignmentThreeDatabase : RoomDatabase() {
 
-    abstract fun latestMovieDao(): LatestMovieDao
     abstract fun nowPlayingMovieDao(): NowPlayingMovieDao
     abstract fun popularMovieDao(): PopularMovieDao
     abstract fun topRatedMovieDao(): TopRatedMovieDao

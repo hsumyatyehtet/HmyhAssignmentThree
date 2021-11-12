@@ -9,11 +9,6 @@ import retrofit2.http.Query
 
 interface HmyhAssignmentThreeApi {
 
-    @GET(GET_LATEST_MOVIE)
-    fun loadLatestMovie(
-        @Query(PARAM_API_KEY)apkKey: String
-    ):Observable<LatestMovieVO>
-
     @GET(GET_NOW_PLAYING_MOVIE_LIST)
     fun loadNowPlayingMovieList(
         @Query(PARAM_API_KEY)apiKey: String
