@@ -153,4 +153,27 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
         return mDatabase.movieDetailDao().getMovieDetailById(movieId)
     }
 
+    @SuppressLint("CheckResult")
+    override fun loadMovieVideo(
+        movieId: Long,
+        onSuccess: (movieVideoVO: MovieVideoVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mApi.loadMovieVideo(movieId,API_KEY_DATA).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it?.let { movieVideo ->
+                    mDatabase.movieVideoDao().insertMovieVideo(movieVideo).subscribeDBWithCompletable()
+                    onSuccess(movieVideo)
+                }
+            }, {
+
+            })
+    }
+
+    override fun getMovieVideo(): LiveData<MovieVideoVO> {
+       return mDatabase.movieVideoDao().getMovieVideo()
+    }
+
 }

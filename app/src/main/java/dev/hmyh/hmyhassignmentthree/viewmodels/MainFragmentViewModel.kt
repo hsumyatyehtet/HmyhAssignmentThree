@@ -22,36 +22,16 @@ class MainFragmentViewModel : ViewModel(),MovieListDelegate {
     private val navigateToMovieDetail: MutableLiveData<Long> = MutableLiveData()
 
     fun onUiReady() {
-        mModel.loadLatestMovie(
-            onSuccess = {
+        mModel.loadLatestMovie(onSuccess = {}, onFailure = {})
 
-            }, onFailure = {
+        mModel.loadNowPlayingMovie(onSuccess = {},onFailure = {})
 
-            })
-        mModel.loadNowPlayingMovie(onSuccess = {
+        mModel.loadPopularMovie(onSuccess = {},onFailure = {})
 
-        },onFailure = {
+        mModel.loadTopRatedMovie(onSuccess = {},onFailure = {})
 
-        })
+        mModel.loadUpComingMovie(onSuccess = {}, onFailure = {})
 
-        mModel.loadPopularMovie(onSuccess = {
-
-        },onFailure = {
-
-        })
-
-        mModel.loadTopRatedMovie(onSuccess = {
-
-        },onFailure = {
-
-        })
-
-        mModel.loadUpComingMovie(onSuccess = {
-
-        },
-        onFailure = {
-
-        })
     }
 
     fun getLatestMovie(): LiveData<LatestMovieVO> {

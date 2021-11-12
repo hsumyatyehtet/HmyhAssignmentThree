@@ -108,4 +108,9 @@ dependencies {
     //chunk
     debugImplementation "com.readystatesoftware.chuck:library:1.1.0"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:1.1.0"
+
+//    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+//    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.23'
+
+
 }

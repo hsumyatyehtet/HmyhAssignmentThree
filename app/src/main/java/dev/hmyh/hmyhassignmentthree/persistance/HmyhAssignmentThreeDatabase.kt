@@ -9,6 +9,7 @@ import dev.hmyh.hmyhassignmentthree.data.vos.*
 import dev.hmyh.hmyhassignmentthree.persistance.daos.*
 import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.GenreTypeConverter
 import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieTypeConverter
+import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieVideoTypeConverter
 
 @Database(
     entities = [
@@ -17,12 +18,14 @@ import dev.hmyh.hmyhassignmentthree.persistance.typeconverters.MovieTypeConverte
         PopularMovieVO::class,
         TopRatedMovieVO::class,
         UpComingMovieVO::class,
-    MovieDetailVO::class
+    MovieDetailVO::class,
+    MovieVideoVO::class
     ], version = 1, exportSchema = false
 )
 @TypeConverters(
     MovieTypeConverter::class,
-    GenreTypeConverter::class
+    GenreTypeConverter::class,
+    MovieVideoTypeConverter::class
 )
 abstract class HmyhAssignmentThreeDatabase : RoomDatabase() {
 
@@ -32,6 +35,7 @@ abstract class HmyhAssignmentThreeDatabase : RoomDatabase() {
     abstract fun topRatedMovieDao(): TopRatedMovieDao
     abstract fun upcomingMovieDao(): UpcomingMovieDao
     abstract fun movieDetailDao(): MovieDetailDao
+    abstract fun movieVideoDao(): MovieVideoDao
 
     companion object {
 

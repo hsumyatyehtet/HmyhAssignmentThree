@@ -13,10 +13,14 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import dev.hmyh.hmyhassignmentthree.R
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieDetailVO
+import dev.hmyh.hmyhassignmentthree.data.vos.MovieVideoListVO
 import dev.hmyh.hmyhassignmentthree.utils.PHOTO_PATH
 import dev.hmyh.hmyhassignmentthree.utils.getApiMovieDate
 import dev.hmyh.hmyhassignmentthree.viewmodels.DetailFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
+import android.content.Intent
+import android.net.Uri
+
 
 class DetailFragment: Fragment() {
 
@@ -52,6 +56,29 @@ class DetailFragment: Fragment() {
             }
         })
 
+        mDetailFragmentViewModel.getMovieVideo().observe(viewLifecycleOwner, Observer {
+            it?.let { movieVideo->
+                movieVideo.movieVideoList?.let { vidoeList->
+                    bindMovieVideoList(vidoeList)
+                }
+            }
+        })
+
+    }
+
+    private fun bindMovieVideoList(videoList: List<MovieVideoListVO>) {
+
+        rlPlayTrailer.setOnClickListener {
+            videoList[0].key?.let { key->
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("http://www.youtube.com/watch?v=$key")
+                    )
+                )
+            }
+        }
+
     }
 
     private fun bindData(movieDetail: MovieDetailVO) {
@@ -70,6 +97,17 @@ class DetailFragment: Fragment() {
         tvGenre.text = genre ?: ""
 
         tvOverview.text = movieDetail.overView ?: ""
+
+        rlGoHome.setOnClickListener {
+            movieDetail.homePage?.let { homePage->
+                startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("$homePage")
+                    )
+                )
+            }
+        }
     }
 
     private fun setUpOnUiReady() {

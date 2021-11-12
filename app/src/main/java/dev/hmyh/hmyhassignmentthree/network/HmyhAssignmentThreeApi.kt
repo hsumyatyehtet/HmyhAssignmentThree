@@ -40,4 +40,10 @@ interface HmyhAssignmentThreeApi {
         @Query(PARAM_API_KEY)apiKey: String
     ):Observable<MovieDetailVO>
 
+    @GET("$GET_MOVIE_VIDEO{movieId}/videos")
+    fun loadMovieVideo(
+        @Path("movieId")movieId: Long,
+        @Query(PARAM_API_KEY)apiKey: String
+    ):Observable<MovieVideoVO>
+
 }
