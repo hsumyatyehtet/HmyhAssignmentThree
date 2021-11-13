@@ -24,4 +24,5 @@ class MetaVO {
 
     @SerializedName("previous_pages")
     val previousPage: String? = null
+
 }

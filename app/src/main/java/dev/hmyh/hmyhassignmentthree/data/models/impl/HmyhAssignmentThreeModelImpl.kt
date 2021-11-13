@@ -6,8 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import dev.hmyh.hmyhassignmentthree.data.models.BaseAppModel
 import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
 import dev.hmyh.hmyhassignmentthree.data.vos.*
-import dev.hmyh.hmyhassignmentthree.utils.API_KEY_DATA
-import dev.hmyh.hmyhassignmentthree.utils.subscribeDBWithCompletable
+import dev.hmyh.hmyhassignmentthree.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -166,6 +165,27 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
             }, {
 
             })
+    }
+
+    @SuppressLint("CheckResult")
+    override fun loadMoreSearchMovie(
+        url: String,
+        search: String,
+        page: Long,
+        onSuccess: (searchMovieVO: SearchMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mApi.loadMoreSearchMovie(url+ GET_SEARCH_MOVIE,API_KEY_DATA,search,page).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it?.let { searchMovieVideo ->
+                    onSuccess(searchMovieVideo)
+                }
+            }, {
+                onFailure(it.toString())
+            })
+
     }
 
 }

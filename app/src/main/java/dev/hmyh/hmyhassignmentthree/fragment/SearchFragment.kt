@@ -14,6 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dev.hmyh.hmyhassignmentthree.R
 import dev.hmyh.hmyhassignmentthree.adapter.SearchMovieListAdapter
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
@@ -26,6 +28,8 @@ class SearchFragment: Fragment() {
     private lateinit var mSearchFragmentViewModel: SearchFragmentViewModel
 
     private lateinit var mSearchMovieListAdapter: SearchMovieListAdapter
+
+    var isListEndReached = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,10 +69,44 @@ class SearchFragment: Fragment() {
         })
 
 
+
+
     }
 
     private fun onChangeTextAfterSecond(searchWord: String) {
         mSearchFragmentViewModel.loadSearchMovie(searchWord)
+
+        rvSearch.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val visibleItemCount = rvSearch.layoutManager!!.childCount
+                val totalItemCount = rvSearch.layoutManager!!.itemCount
+                val pastVisibleItems = (rvSearch.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                if (visibleItemCount + pastVisibleItems < totalItemCount) {
+                    isListEndReached = false
+                }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                    && (recyclerView.layoutManager as LinearLayoutManager)
+                        .findLastCompletelyVisibleItemPosition() == recyclerView.adapter!!.itemCount - 1
+                    && !isListEndReached
+                ) {
+                    isListEndReached = true
+
+                    mSearchFragmentViewModel.loadMoreSearchMovie(searchWord)
+
+                }
+            }
+
+        })
+
     }
 
     private fun setUpRecyclerView() {
@@ -80,11 +118,18 @@ class SearchFragment: Fragment() {
     }
 
     private fun setUpDataObservation() {
-        mSearchFragmentViewModel.getSearchMovie().observe(viewLifecycleOwner, Observer {
-            it?.let { searchMovie->
-                searchMovie.movieList?.let { movieList->
-                    mSearchMovieListAdapter.setNewData(movieList)
-                }
+//        mSearchFragmentViewModel.getSearchMovie().observe(viewLifecycleOwner, Observer {
+//            it?.let { searchMovie->
+//                searchMovie.movieList?.let { movieList->
+//                    mSearchMovieListAdapter.setNewData(movieList)
+//                }
+//            }
+//        })
+
+        mSearchFragmentViewModel.getSearchMovieList().observe(viewLifecycleOwner, Observer {
+            it?.let { searchMovieList->
+                    mSearchMovieListAdapter.setNewData(searchMovieList as MutableList<MovieListVO>)
+
             }
         })
 

@@ -55,4 +55,12 @@ interface HmyhAssignmentThreeModel {
         onFailure: (String) -> Unit
     )
 
+    fun loadMoreSearchMovie(
+        url: String,
+        search: String,
+        page: Long,
+        onSuccess: (searchMovieVO: SearchMovieVO)->Unit,
+        onFailure: (String) -> Unit
+    )
+
 }

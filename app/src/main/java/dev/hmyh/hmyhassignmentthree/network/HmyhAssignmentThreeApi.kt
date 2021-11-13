@@ -1,11 +1,13 @@
 package dev.hmyh.hmyhassignmentthree.network
 
 import dev.hmyh.hmyhassignmentthree.data.vos.*
+import dev.hmyh.hmyhassignmentthree.network.response.MoreDataResponse
 import dev.hmyh.hmyhassignmentthree.utils.*
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface HmyhAssignmentThreeApi {
 
@@ -45,6 +47,14 @@ interface HmyhAssignmentThreeApi {
     fun loadSearchMovie(
         @Query(PARAM_API_KEY)apiKey: String,
         @Query(PARAM_QUERY)query: String
+    ):Observable<SearchMovieVO>
+
+    @GET
+    fun loadMoreSearchMovie(
+        @Url url: String,
+        @Query(PARAM_API_KEY)apkKey: String,
+        @Query(PARAM_QUERY)query: String,
+        @Query(PARAM_PAGE)page: Long
     ):Observable<SearchMovieVO>
 
 }
