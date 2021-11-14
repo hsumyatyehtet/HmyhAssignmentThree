@@ -21,25 +21,14 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
     private val mMovie = ArrayList<MovieListVO>()
     private val mMovieListLiveData = MutableLiveData<List<MovieListVO>>()
 
-    private var mMetaVO: MetaVO? = null
+    private var progressLiveData: MutableLiveData<Int> = MutableLiveData<Int>()
 
     fun loadSearchMovie(searchWord: String) {
-//        mModel.loadSearchMovie(searchWord,
-//            onSuccess = {
-//                        searchMovie.postValue(it)
-//            },
-//            onFailure = {
-//
-//            })
-
 
         mModel.loadSearchMovie(searchWord,
             onSuccess = { movie ->
-
                 searchMovie.postValue(movie)
-
                 movie.movieList?.let {
-
                     mMovie.addAll(it)
                     mMovieListLiveData.value = mMovie
 
@@ -50,46 +39,41 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
     }
 
     fun loadMoreSearchMovie(searchWord: String) {
-
         var page = 0L
         var totalPage = 0L
 
         searchMovie.value?.page?.let {
             page = it
         }
-
         searchMovie.value?.totalPages?.let {
             totalPage = it
         }
 
         if (page <= totalPage) {
-
             page++
+            progressLiveData.postValue(1)
             mModel.loadMoreSearchMovie(BASE_URL, searchWord, page,
                 onSuccess = {movie->
                     searchMovie.postValue(movie)
-
                     movie.movieList?.let {
-
                         mMovie.addAll(it)
                         mMovieListLiveData.value = mMovie
-
                     }
-                }, onFailure = {
-
+                    progressLiveData.postValue(0)
+                },
+                onFailure = {
+                    progressLiveData.postValue(0)
                 })
-
         }
+    }
 
+    fun getShowOrHideProgress(): MutableLiveData<Int>{
+        return progressLiveData
     }
 
     fun getSearchMovieList(): MutableLiveData<List<MovieListVO>> {
         return mMovieListLiveData
     }
-
-//    fun getSearchMovie(): LiveData<SearchMovieVO>{
-//        return searchMovie
-//    }
 
     //delegate override function
     override fun onTapMovieItem(movieId: Long) {

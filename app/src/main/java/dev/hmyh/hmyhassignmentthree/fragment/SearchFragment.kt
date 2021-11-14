@@ -23,7 +23,7 @@ import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
 import dev.hmyh.hmyhassignmentthree.viewmodels.SearchFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchFragment: Fragment() {
+class SearchFragment: BaseFragment() {
 
     private lateinit var mSearchFragmentViewModel: SearchFragmentViewModel
 
@@ -118,13 +118,6 @@ class SearchFragment: Fragment() {
     }
 
     private fun setUpDataObservation() {
-//        mSearchFragmentViewModel.getSearchMovie().observe(viewLifecycleOwner, Observer {
-//            it?.let { searchMovie->
-//                searchMovie.movieList?.let { movieList->
-//                    mSearchMovieListAdapter.setNewData(movieList)
-//                }
-//            }
-//        })
 
         mSearchFragmentViewModel.getSearchMovieList().observe(viewLifecycleOwner, Observer {
             it?.let { searchMovieList->
@@ -146,6 +139,17 @@ class SearchFragment: Fragment() {
 
             })
 
+
+        mSearchFragmentViewModel.getShowOrHideProgress().observe(viewLifecycleOwner, Observer {
+            it?.let { data->
+                if (data==1){
+                    showProgressDialog()
+                }
+                else{
+                    hideProgressDialog()
+                }
+            }
+        })
 
     }
 

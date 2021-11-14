@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'maven-publish'
 }
 
 apply plugin: 'kotlin-android-extensions'
@@ -108,6 +109,10 @@ dependencies {
     //chunk
     debugImplementation "com.readystatesoftware.chuck:library:1.1.0"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:1.1.0"
+
+    //progress
+   implementation "com.kaopiz:kprogresshud:1.2.0"
+    //implementation "com.github.techinessoverloaded:progress-dialog:1.3.1"
 
 //    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 //    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.23'
