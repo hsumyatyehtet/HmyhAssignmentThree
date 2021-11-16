@@ -5,29 +5,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
 import dev.hmyh.hmyhassignmentthree.data.models.impl.HmyhAssignmentThreeModelImpl
-import dev.hmyh.hmyhassignmentthree.data.vos.MetaVO
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
-import dev.hmyh.hmyhassignmentthree.data.vos.SearchMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.NowPlayingMovieVO
 import dev.hmyh.hmyhassignmentthree.delegate.MovieListDelegate
 import dev.hmyh.hmyhassignmentthree.utils.BASE_URL
 
-class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
+class NowPlayingMovieSeeAllViewModel: ViewModel(),MovieListDelegate{
 
     private val mModel: HmyhAssignmentThreeModel = HmyhAssignmentThreeModelImpl
 
-    private var searchMovie: MutableLiveData<SearchMovieVO> = MutableLiveData()
-    private val navigateToMovieDetail: MutableLiveData<Long> = MutableLiveData()
+    private var nowPlayingMovie: MutableLiveData<NowPlayingMovieVO> = MutableLiveData()
 
     private val mMovie = ArrayList<MovieListVO>()
     private val mMovieListLiveData = MutableLiveData<List<MovieListVO>>()
 
     private var progressLiveData: MutableLiveData<Int> = MutableLiveData<Int>()
 
-    fun loadSearchMovie(searchWord: String) {
+    private val navigateToMovieDetail: MutableLiveData<Long> = MutableLiveData()
 
-        mModel.loadSearchMovie(searchWord,
-            onSuccess = { movie ->
-                searchMovie.postValue(movie)
+    fun loadNowPlayingMovie(){
+        mModel.loadNowPlayingMovie(
+            onSuccess = {movie->
+                nowPlayingMovie.postValue(movie)
                 movie.movieList?.let {
                     mMovie.addAll(it)
                     mMovieListLiveData.value = mMovie
@@ -37,23 +36,24 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
         )
     }
 
-    fun loadMoreSearchMovie(searchWord: String) {
+    fun loadMoreNowPlayingMovie(){
         var page = 0L
         var totalPage = 0L
 
-        searchMovie.value?.page?.let {
+        nowPlayingMovie.value?.page?.let {
             page = it
         }
-        searchMovie.value?.totalPages?.let {
+        nowPlayingMovie.value?.totalPage?.let {
             totalPage = it
         }
 
         if (page <= totalPage) {
             page++
             progressLiveData.postValue(1)
-            mModel.loadMoreSearchMovie(BASE_URL, searchWord, page,
+            mModel.loadMoreNowPlayingMovie(
+                BASE_URL,  page,
                 onSuccess = {movie->
-                    searchMovie.postValue(movie)
+                    nowPlayingMovie.postValue(movie)
                     movie.movieList?.let {
                         mMovie.addAll(it)
                         mMovieListLiveData.value = mMovie
@@ -64,17 +64,17 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
                     progressLiveData.postValue(0)
                 })
         }
+
     }
 
     fun getShowOrHideProgress(): MutableLiveData<Int>{
         return progressLiveData
     }
 
-    fun getSearchMovieList(): MutableLiveData<List<MovieListVO>> {
+    fun getNowPlayingMovieList(): MutableLiveData<List<MovieListVO>>{
         return mMovieListLiveData
     }
 
-    //delegate override function
     override fun onTapMovieItem(movieId: Long) {
         navigateToMovieDetail.postValue(movieId)
     }

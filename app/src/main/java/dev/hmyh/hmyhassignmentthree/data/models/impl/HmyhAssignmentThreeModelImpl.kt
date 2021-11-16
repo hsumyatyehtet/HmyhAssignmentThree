@@ -38,6 +38,25 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
     }
 
     @SuppressLint("CheckResult")
+    override fun loadMoreNowPlayingMovie(
+        url: String,
+        page: Long,
+        onSuccess: (nowPlayingMovie: NowPlayingMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+
+        mApi.loadMoreNowPlayingMovieList(url+ GET_NOW_PLAYING_MOVIE_LIST, API_KEY_DATA,page).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                it?.let { nowPlayingMovie ->
+                    onSuccess(nowPlayingMovie)
+                }
+            }
+
+    }
+
+    @SuppressLint("CheckResult")
     override fun loadPopularMovie(
         onSuccess: (popularMovie: PopularMovieVO) -> Unit,
         onFailure: (String) -> Unit

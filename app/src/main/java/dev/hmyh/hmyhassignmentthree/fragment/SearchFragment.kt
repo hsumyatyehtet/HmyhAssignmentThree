@@ -68,9 +68,6 @@ class SearchFragment: BaseFragment() {
 
         })
 
-
-
-
     }
 
     private fun onChangeTextAfterSecond(searchWord: String) {

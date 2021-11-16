@@ -16,6 +16,13 @@ interface HmyhAssignmentThreeApi {
         @Query(PARAM_API_KEY)apiKey: String
     ):Observable<NowPlayingMovieVO>
 
+    @GET
+    fun loadMoreNowPlayingMovieList(
+        @Url url: String,
+        @Query(PARAM_API_KEY)apiKey: String,
+        @Query(PARAM_PAGE)page: Long
+    ):Observable<NowPlayingMovieVO>
+
     @GET(GET_POPULAR_MOVIE_LIST)
     fun loadPopularMovieList(
         @Query(PARAM_API_KEY)apiKey: String

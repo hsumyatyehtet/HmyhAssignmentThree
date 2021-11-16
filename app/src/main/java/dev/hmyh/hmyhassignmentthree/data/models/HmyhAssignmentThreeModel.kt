@@ -12,6 +12,13 @@ interface HmyhAssignmentThreeModel {
 
     fun getNowPlayingMovie(): LiveData<NowPlayingMovieVO>
 
+    fun loadMoreNowPlayingMovie(
+        url: String,
+        page: Long,
+        onSuccess: (nowPlayingMovie: NowPlayingMovieVO)->Unit,
+        onFailure: (String) -> Unit
+    )
+
     fun loadPopularMovie(
         onSuccess: (popularMovie: PopularMovieVO)->Unit,
         onFailure: (String)->Unit

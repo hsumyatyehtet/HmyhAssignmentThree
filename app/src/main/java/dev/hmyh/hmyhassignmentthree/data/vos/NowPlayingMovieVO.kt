@@ -11,7 +11,7 @@ data class NowPlayingMovieVO(
     var id: Int=1,
 
     @SerializedName("page")
-    var page: Int? = null,
+    var page: Long? = null,
 
     @SerializedName("results")
     var movieList: MutableList<MovieListVO>?=null,
