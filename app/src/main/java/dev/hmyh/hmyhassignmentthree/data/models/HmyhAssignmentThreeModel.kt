@@ -6,7 +6,7 @@ import dev.hmyh.hmyhassignmentthree.data.vos.*
 interface HmyhAssignmentThreeModel {
 
     fun loadNowPlayingMovie(
-        onSuccess: (nowPlayingMovie: NowPlayingMovieVO)->Unit,
+        onSuccess: (nowPlayingMovie: NowPlayingMovieVO) -> Unit,
         onFailure: (String) -> Unit
     ): LiveData<NowPlayingMovieVO>
 
@@ -15,26 +15,33 @@ interface HmyhAssignmentThreeModel {
     fun loadMoreNowPlayingMovie(
         url: String,
         page: Long,
-        onSuccess: (nowPlayingMovie: NowPlayingMovieVO)->Unit,
+        onSuccess: (nowPlayingMovie: NowPlayingMovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
 
     fun loadPopularMovie(
-        onSuccess: (popularMovie: PopularMovieVO)->Unit,
-        onFailure: (String)->Unit
+        onSuccess: (popularMovie: PopularMovieVO) -> Unit,
+        onFailure: (String) -> Unit
     )
 
     fun getPopularMovie(): LiveData<PopularMovieVO>
 
+    fun loadMorePopularMovie(
+        url: String,
+        page: Long,
+        onSuccess: (popularMovie: PopularMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    )
+
     fun loadTopRatedMovie(
-        onSuccess: (topRatedMovie: TopRatedMovieVO)->Unit,
+        onSuccess: (topRatedMovie: TopRatedMovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
 
     fun getTopRatedMovie(): LiveData<TopRatedMovieVO>
 
     fun loadUpComingMovie(
-        onSuccess: (upComingMovie: UpComingMovieVO)->Unit,
+        onSuccess: (upComingMovie: UpComingMovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
 
@@ -42,7 +49,7 @@ interface HmyhAssignmentThreeModel {
 
     fun loadMovieDetail(
         movieId: Long,
-        onSuccess: (movieDetailVO: MovieDetailVO)->Unit,
+        onSuccess: (movieDetailVO: MovieDetailVO) -> Unit,
         onFailure: (String) -> Unit
     )
 
@@ -50,7 +57,7 @@ interface HmyhAssignmentThreeModel {
 
     fun loadMovieVideo(
         movieId: Long,
-        onSuccess: (movieVideoVO: MovieVideoVO)->Unit,
+        onSuccess: (movieVideoVO: MovieVideoVO) -> Unit,
         onFailure: (String) -> Unit
     )
 
@@ -58,7 +65,7 @@ interface HmyhAssignmentThreeModel {
 
     fun loadSearchMovie(
         search: String,
-        onSuccess: (searchMovieVO: SearchMovieVO)->Unit,
+        onSuccess: (searchMovieVO: SearchMovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
 
@@ -66,7 +73,7 @@ interface HmyhAssignmentThreeModel {
         url: String,
         search: String,
         page: Long,
-        onSuccess: (searchMovieVO: SearchMovieVO)->Unit,
+        onSuccess: (searchMovieVO: SearchMovieVO) -> Unit,
         onFailure: (String) -> Unit
     )
 

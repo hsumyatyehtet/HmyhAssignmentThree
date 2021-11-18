@@ -79,6 +79,23 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
     }
 
     @SuppressLint("CheckResult")
+    override fun loadMorePopularMovie(
+        url: String,
+        page: Long,
+        onSuccess: (popularMovie: PopularMovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mApi.loadMorePopularMovieList(url+ GET_POPULAR_MOVIE_LIST, API_KEY_DATA,page).subscribeOn(
+            Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                it?.let { popularMovie ->
+                    onSuccess(popularMovie)
+                }
+            }
+    }
+
+    @SuppressLint("CheckResult")
     override fun loadTopRatedMovie(
         onSuccess: (topRatedMovie: TopRatedMovieVO) -> Unit,
         onFailure: (String) -> Unit
