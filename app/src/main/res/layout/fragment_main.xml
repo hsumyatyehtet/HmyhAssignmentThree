@@ -88,7 +88,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_2x" />
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPopularMovie"
                 android:layout_width="match_parent"
@@ -109,6 +108,17 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_3x"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTopRatedSeeAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_medium_2"
+                android:layout_alignBaseline="@+id/tvTopRatedTitle"
+                android:layout_alignParentEnd="true"
+                android:text="See all"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_regular_2x" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTopRatedMovie"

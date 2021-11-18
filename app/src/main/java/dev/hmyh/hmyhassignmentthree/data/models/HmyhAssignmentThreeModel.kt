@@ -40,6 +40,13 @@ interface HmyhAssignmentThreeModel {
 
     fun getTopRatedMovie(): LiveData<TopRatedMovieVO>
 
+    fun loadMoreTopRatedMovie(
+        url: String,
+        page: Long,
+        onSuccess: (topRatedMovie: TopRatedMovieVO)->Unit,
+        onFailure: (String) -> Unit
+    )
+
     fun loadUpComingMovie(
         onSuccess: (upComingMovie: UpComingMovieVO) -> Unit,
         onFailure: (String) -> Unit

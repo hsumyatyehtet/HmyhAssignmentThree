@@ -13,18 +13,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.hmyh.hmyhassignmentthree.R
-import dev.hmyh.hmyhassignmentthree.adapter.NowPlayingMovieListSeeAllAdapter
+import dev.hmyh.hmyhassignmentthree.adapter.TopRatedMovieListSeeAllAdapter
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
 import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
-import dev.hmyh.hmyhassignmentthree.viewmodels.NowPlayingMovieSeeAllViewModel
-import kotlinx.android.synthetic.main.fragment_search.*
+import dev.hmyh.hmyhassignmentthree.viewmodels.TopRatedMovieSeeAllVieModel
 import kotlinx.android.synthetic.main.fragment_see_all.*
 
-class NowPlayingMovieSeeAllFragment: BaseFragment() {
+class TopRatedMovieSeeAllFragment : BaseFragment() {
 
-    private lateinit var mViewModel: NowPlayingMovieSeeAllViewModel
+    private lateinit var mViewModel: TopRatedMovieSeeAllVieModel
 
-    private lateinit var mAdapter: NowPlayingMovieListSeeAllAdapter
+    private lateinit var mAdapter: TopRatedMovieListSeeAllAdapter
 
     var isListEndReached = false
 
@@ -33,13 +32,13 @@ class NowPlayingMovieSeeAllFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_see_all,container,false)
+        return inflater.inflate(R.layout.fragment_see_all, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tvSeeAllTitle.text = "Now Playing Movie List"
+        tvSeeAllTitle.text = "Top Rated Movie List"
 
         setUpViewModel()
         setUpRecyclerView()
@@ -48,22 +47,22 @@ class NowPlayingMovieSeeAllFragment: BaseFragment() {
         setUpDataObservations()
     }
 
-    private fun setUpViewModel() {
-        mViewModel = ViewModelProviders.of(this)[NowPlayingMovieSeeAllViewModel::class.java]
+    private fun setUpViewModel(){
+        mViewModel = ViewModelProviders.of(this)[TopRatedMovieSeeAllVieModel::class.java]
     }
 
     private fun setUpRecyclerView() {
-        mAdapter = NowPlayingMovieListSeeAllAdapter(mViewModel)
-        rvSeeAll.layoutManager = GridLayoutManager(context,2)
+        mAdapter = TopRatedMovieListSeeAllAdapter(mViewModel)
+        rvSeeAll.layoutManager = GridLayoutManager(context, 2)
         rvSeeAll.adapter = mAdapter
+
     }
 
-    private fun setUpOnUiReady() {
-        mViewModel.loadNowPlayingMovie()
+    private fun setUpListener(){
+        mViewModel.loadTopRatedMovie()
     }
 
-    private fun setUpListener() {
-
+    private fun setUpOnUiReady(){
         ivBackSeeAll.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -91,15 +90,16 @@ class NowPlayingMovieSeeAllFragment: BaseFragment() {
                     && !isListEndReached
                 ) {
                     isListEndReached = true
-                    mViewModel.loadMoreNowPlayingMovie()
+                    mViewModel.loadMoreTopRatedMovie()
                 }
             }
         })
 
+
     }
 
-    private fun setUpDataObservations() {
-        mViewModel.getNowPlayingMovieList().observe(viewLifecycleOwner, Observer {
+    private fun setUpDataObservations(){
+        mViewModel.getTopRatedMovieList().observe(viewLifecycleOwner, Observer {
             it?.let { movieList->
                 var mMovieList: MutableList<MovieListVO> = mutableListOf()
                 mMovieList.addAll(movieList.distinctBy { movieDistinctList->
@@ -120,19 +120,18 @@ class NowPlayingMovieSeeAllFragment: BaseFragment() {
             }
         })
 
-        mViewModel.getNavigateToMovieDetailLiveData().observe(viewLifecycleOwner,
+        mViewModel.getNavigateToMovieDetail().observe(viewLifecycleOwner,
             androidx.lifecycle.Observer {id->
                 if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED){
                     id?.let {
                         findNavController().navigate(
-                            R.id.action_nowPlayingMovieSeeAllFragment_to_detailFragment,
+                            R.id.action_topRatedMovieSeeAllFragment_to_detailFragment,
                             getBundleMovieDetail(it)
                         )
                     }
                 }
 
             })
-
 
     }
 

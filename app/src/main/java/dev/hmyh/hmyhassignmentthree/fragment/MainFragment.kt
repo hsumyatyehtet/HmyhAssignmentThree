@@ -62,6 +62,10 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_popularMovieSeeAllFragment)
         }
 
+        tvTopRatedSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_topRatedMovieSeeAllFragment)
+        }
+
     }
 
     private fun setUpViewModel() {

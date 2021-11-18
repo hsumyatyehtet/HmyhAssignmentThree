@@ -99,7 +99,11 @@ class PopularMovieSeeAllFragment: BaseFragment() {
     private fun setUpDataObservations(){
         mViewModel.getPopularMovieList().observe(viewLifecycleOwner, Observer {
             it?.let { movieList->
-                mAdapter.setNewData(movieList as MutableList<MovieListVO>)
+                var mMovieList: MutableList<MovieListVO> = mutableListOf()
+                mMovieList.addAll(movieList.distinctBy { movieDistinctList->
+                    movieDistinctList.id
+                })
+                mAdapter.setNewData(mMovieList)
             }
         })
 
