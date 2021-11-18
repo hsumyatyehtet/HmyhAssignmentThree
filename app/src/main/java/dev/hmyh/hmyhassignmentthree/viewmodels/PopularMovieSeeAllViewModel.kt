@@ -6,9 +6,10 @@ import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
 import dev.hmyh.hmyhassignmentthree.data.models.impl.HmyhAssignmentThreeModelImpl
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
 import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
+import dev.hmyh.hmyhassignmentthree.delegate.MovieListDelegate
 import dev.hmyh.hmyhassignmentthree.utils.BASE_URL
 
-class PopularMovieSeeAllViewModel: ViewModel() {
+class PopularMovieSeeAllViewModel: ViewModel(),MovieListDelegate{
 
     private val mModel: HmyhAssignmentThreeModel = HmyhAssignmentThreeModelImpl
 
@@ -18,6 +19,8 @@ class PopularMovieSeeAllViewModel: ViewModel() {
     private val mMovieListLiveData = MutableLiveData<List<MovieListVO>>()
 
     private var progressLiveData: MutableLiveData<Int> = MutableLiveData<Int>()
+
+    private var navigateToMovieDetail: MutableLiveData<Long> = MutableLiveData()
 
     fun loadPopularMovie(){
         mModel.loadPopularMovie(
@@ -71,6 +74,14 @@ class PopularMovieSeeAllViewModel: ViewModel() {
 
     fun getShowOrHideProgress(): MutableLiveData<Int>{
         return progressLiveData
+    }
+
+    override fun onTapMovieItem(movieId: Long) {
+        navigateToMovieDetail.postValue(movieId)
+    }
+
+    fun getNavigateToMovieDetail(): MutableLiveData<Long>{
+        return navigateToMovieDetail
     }
 
 }

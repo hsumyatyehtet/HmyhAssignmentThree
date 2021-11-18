@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.hmyh.hmyhassignmentthree.R
 import dev.hmyh.hmyhassignmentthree.adapter.PopularMovieListSeeAllAdapter
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
+import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
 import dev.hmyh.hmyhassignmentthree.viewmodels.PopularMovieSeeAllViewModel
 import kotlinx.android.synthetic.main.fragment_see_all.*
 
@@ -49,7 +51,7 @@ class PopularMovieSeeAllFragment: BaseFragment() {
     }
 
     private fun setUpRecyclerView() {
-        mAdapter = PopularMovieListSeeAllAdapter()
+        mAdapter = PopularMovieListSeeAllAdapter(mViewModel)
         rvSeeAll.layoutManager = GridLayoutManager(context,2)
         rvSeeAll.adapter = mAdapter
 
@@ -111,6 +113,19 @@ class PopularMovieSeeAllFragment: BaseFragment() {
                 }
             }
         })
+
+        mViewModel.getNavigateToMovieDetail().observe(viewLifecycleOwner,
+            androidx.lifecycle.Observer {id->
+                if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED){
+                    id?.let {
+                        findNavController().navigate(
+                            R.id.action_popularMovieSeeAllFragment_to_detailFragment,
+                            getBundleMovieDetail(it)
+                        )
+                    }
+                }
+
+            })
 
     }
 

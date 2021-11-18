@@ -9,12 +9,12 @@ import dev.hmyh.hmyhassignmentthree.view.hoder.NowPlayingMovieListSeeAllViewHold
 import dev.hmyh.hmyhassignmentthree.view.hoder.NowPlayingMovieListViewHolder
 import dev.hmyh.hmyhassignmentthree.view.hoder.PopularMovieListSeeAllViewHolder
 
-class PopularMovieListSeeAllAdapter():
+class PopularMovieListSeeAllAdapter(val delegate: MovieListDelegate):
     BaseRecyclerAdapter<PopularMovieListSeeAllViewHolder, MovieListVO>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMovieListSeeAllViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_in_movie_search,parent,false)
-        return PopularMovieListSeeAllViewHolder(view)
+        return PopularMovieListSeeAllViewHolder(view,delegate)
     }
 
 }
