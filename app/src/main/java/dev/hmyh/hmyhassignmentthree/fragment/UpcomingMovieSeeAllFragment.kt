@@ -1,6 +1,5 @@
 package dev.hmyh.hmyhassignmentthree.fragment
 
-import android.graphics.Movie
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,17 +12,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.hmyh.hmyhassignmentthree.R
-import dev.hmyh.hmyhassignmentthree.adapter.TopRatedMovieListSeeAllAdapter
+import dev.hmyh.hmyhassignmentthree.adapter.UpComingMovieListSeeAllAdapter
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
 import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
-import dev.hmyh.hmyhassignmentthree.viewmodels.TopRatedMovieSeeAllVieModel
+import dev.hmyh.hmyhassignmentthree.viewmodels.UpComingMovieSeeAllViewModel
 import kotlinx.android.synthetic.main.fragment_see_all.*
 
-class TopRatedMovieSeeAllFragment : BaseFragment() {
+class UpcomingMovieSeeAllFragment: BaseFragment() {
 
-    private lateinit var mViewModel: TopRatedMovieSeeAllVieModel
+    private lateinit var mViewModel: UpComingMovieSeeAllViewModel
 
-    private lateinit var mAdapter: TopRatedMovieListSeeAllAdapter
+    private lateinit var mAdapter: UpComingMovieListSeeAllAdapter
 
     var isListEndReached = false
 
@@ -32,13 +31,13 @@ class TopRatedMovieSeeAllFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_see_all, container, false)
+        return inflater.inflate(R.layout.fragment_see_all,container,false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tvSeeAllTitle.text = "Top Rated Movie List"
+        tvSeeAllTitle.text = "Upcoming Movie List"
 
         setUpViewModel()
         setUpRecyclerView()
@@ -47,26 +46,20 @@ class TopRatedMovieSeeAllFragment : BaseFragment() {
         setUpDataObservations()
     }
 
-    private fun setUpViewModel(){
-        mViewModel = ViewModelProviders.of(this)[TopRatedMovieSeeAllVieModel::class.java]
+    private fun setUpViewModel() {
+        mViewModel = ViewModelProviders.of(this)[UpComingMovieSeeAllViewModel::class.java]
     }
 
     private fun setUpRecyclerView() {
-        mAdapter = TopRatedMovieListSeeAllAdapter(mViewModel)
-        rvSeeAll.layoutManager = GridLayoutManager(context, 2)
+        mAdapter = UpComingMovieListSeeAllAdapter(mViewModel)
+        rvSeeAll.layoutManager = GridLayoutManager(context,2)
         rvSeeAll.adapter = mAdapter
-
     }
 
     private fun setUpListener(){
         ivBackSeeAll.setOnClickListener {
             findNavController().popBackStack()
         }
-    }
-
-    private fun setUpOnUiReady(){
-
-        mViewModel.loadTopRatedMovie()
 
         rvSeeAll.addOnScrollListener(object : RecyclerView.OnScrollListener(){
 
@@ -91,16 +84,19 @@ class TopRatedMovieSeeAllFragment : BaseFragment() {
                     && !isListEndReached
                 ) {
                     isListEndReached = true
-                    mViewModel.loadMoreTopRatedMovie()
+                    mViewModel.loadMoreUpComingMovie()
                 }
             }
         })
 
+    }
 
+    private fun setUpOnUiReady(){
+        mViewModel.loadUpComingMovie()
     }
 
     private fun setUpDataObservations(){
-        mViewModel.getTopRatedMovieList().observe(viewLifecycleOwner, Observer {
+        mViewModel.getUpComingMovie().observe(viewLifecycleOwner, Observer {
             it?.let { movieList->
                 var mMovieList: MutableList<MovieListVO> = mutableListOf()
                 mMovieList.addAll(movieList.distinctBy { movieDistinctList->
@@ -126,13 +122,14 @@ class TopRatedMovieSeeAllFragment : BaseFragment() {
                 if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED){
                     id?.let {
                         findNavController().navigate(
-                            R.id.action_topRatedMovieSeeAllFragment_to_detailFragment,
+                            R.id.action_upcomingMovieSeeAllFragment_to_detailFragment,
                             getBundleMovieDetail(it)
                         )
                     }
                 }
 
             })
+
 
     }
 

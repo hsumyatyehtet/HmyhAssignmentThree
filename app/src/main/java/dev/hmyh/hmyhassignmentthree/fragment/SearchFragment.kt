@@ -23,7 +23,7 @@ import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieDetail
 import dev.hmyh.hmyhassignmentthree.viewmodels.SearchFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchFragment: BaseFragment() {
+class SearchFragment : BaseFragment() {
 
     private lateinit var mSearchFragmentViewModel: SearchFragmentViewModel
 
@@ -36,7 +36,7 @@ class SearchFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_search,container,false)
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,14 +73,15 @@ class SearchFragment: BaseFragment() {
     private fun onChangeTextAfterSecond(searchWord: String) {
         mSearchFragmentViewModel.loadSearchMovie(searchWord)
 
-        rvSearch.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        rvSearch.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
                 val visibleItemCount = rvSearch.layoutManager!!.childCount
                 val totalItemCount = rvSearch.layoutManager!!.itemCount
-                val pastVisibleItems = (rvSearch.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                val pastVisibleItems =
+                    (rvSearch.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
                 if (visibleItemCount + pastVisibleItems < totalItemCount) {
                     isListEndReached = false
@@ -108,7 +109,7 @@ class SearchFragment: BaseFragment() {
 
     private fun setUpRecyclerView() {
         mSearchMovieListAdapter = SearchMovieListAdapter(mSearchFragmentViewModel)
-        val layoutManager = GridLayoutManager(context,2)
+        val layoutManager = GridLayoutManager(context, 2)
         rvSearch.layoutManager = layoutManager
         rvSearch.adapter = mSearchMovieListAdapter
 
@@ -117,15 +118,18 @@ class SearchFragment: BaseFragment() {
     private fun setUpDataObservation() {
 
         mSearchFragmentViewModel.getSearchMovieList().observe(viewLifecycleOwner, Observer {
-            it?.let { searchMovieList->
-                    mSearchMovieListAdapter.setNewData(searchMovieList as MutableList<MovieListVO>)
-
+            it?.let { searchMovieList ->
+                var mMovieList: MutableList<MovieListVO> = mutableListOf()
+                mMovieList.addAll(searchMovieList.distinctBy { movieDistinctList ->
+                    movieDistinctList.id
+                })
+                mSearchMovieListAdapter.setNewData(mMovieList)
             }
         })
 
         mSearchFragmentViewModel.getNavigateToMovieDetailLiveData().observe(viewLifecycleOwner,
-            androidx.lifecycle.Observer {id->
-                if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED){
+            androidx.lifecycle.Observer { id ->
+                if (viewLifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED) {
                     id?.let {
                         findNavController().navigate(
                             R.id.action_searchFragment_to_detailFragment,
@@ -136,13 +140,11 @@ class SearchFragment: BaseFragment() {
 
             })
 
-
         mSearchFragmentViewModel.getShowOrHideProgress().observe(viewLifecycleOwner, Observer {
-            it?.let { data->
-                if (data==1){
+            it?.let { data ->
+                if (data == 1) {
                     showProgressDialog()
-                }
-                else{
+                } else {
                     hideProgressDialog()
                 }
             }

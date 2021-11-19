@@ -49,6 +49,13 @@
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right"/>
+        <action
+            android:id="@+id/action_mainFragment_to_upcomingMovieSeeAllFragment"
+            app:destination="@id/upcomingMovieSeeAllFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
 
     </fragment>
 
@@ -113,6 +120,21 @@
         android:label="TopRatedMovieSeeAllFragment" >
         <action
             android:id="@+id/action_topRatedMovieSeeAllFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/upcomingMovieSeeAllFragment"
+        android:name="dev.hmyh.hmyhassignmentthree.fragment.UpcomingMovieSeeAllFragment"
+        android:label="UpcomingMovieSeeAllFragment" >
+
+        <action
+            android:id="@+id/action_upcomingMovieSeeAllFragment_to_detailFragment"
             app:destination="@id/detailFragment"
             app:enterAnim="@anim/enter_from_right"
             app:exitAnim="@anim/exit_to_left"

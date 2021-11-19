@@ -52,6 +52,13 @@ interface HmyhAssignmentThreeApi {
         @Query(PARAM_API_KEY)apiKey: String
     ):Observable<UpComingMovieVO>
 
+    @GET
+    fun loadMoreUpComingMovieList(
+        @Url url: String,
+        @Query(PARAM_API_KEY)apiKey: String,
+        @Query(PARAM_PAGE)page: Long
+    ):Observable<UpComingMovieVO>
+
     @GET("$GET_MOVIE_DETAIL{movieId}")
     fun loadMovieDetail(
         @Path("movieId")movieId: Long,
