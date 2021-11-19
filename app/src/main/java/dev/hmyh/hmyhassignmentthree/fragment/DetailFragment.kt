@@ -119,12 +119,6 @@ class DetailFragment: BaseFragment() {
             movieDetail.homePage?.let { homePage->
 
                 if (homePage.isEmpty()){
-//                    startActivity(
-//                        Intent(
-//                            Intent.ACTION_VIEW,
-//                            Uri.parse("http://www.google.com")
-//                        )
-//                    )
 
                     showAlertDialog("Hmyh Assignment Three","There is no home page"){
 

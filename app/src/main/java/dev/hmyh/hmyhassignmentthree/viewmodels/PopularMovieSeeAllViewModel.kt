@@ -1,62 +1,63 @@
 package dev.hmyh.hmyhassignmentthree.viewmodels
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.hmyh.hmyhassignmentthree.data.models.HmyhAssignmentThreeModel
 import dev.hmyh.hmyhassignmentthree.data.models.impl.HmyhAssignmentThreeModelImpl
-import dev.hmyh.hmyhassignmentthree.data.vos.MetaVO
 import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
-import dev.hmyh.hmyhassignmentthree.data.vos.SearchMovieVO
+import dev.hmyh.hmyhassignmentthree.data.vos.PopularMovieVO
 import dev.hmyh.hmyhassignmentthree.delegate.MovieListDelegate
 import dev.hmyh.hmyhassignmentthree.utils.BASE_URL
 
-class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
+class PopularMovieSeeAllViewModel: ViewModel(),MovieListDelegate{
 
     private val mModel: HmyhAssignmentThreeModel = HmyhAssignmentThreeModelImpl
 
-    private var searchMovie: MutableLiveData<SearchMovieVO> = MutableLiveData()
-    private val navigateToMovieDetail: MutableLiveData<Long> = MutableLiveData()
+    private var popularMovie: MutableLiveData<PopularMovieVO> = MutableLiveData()
 
-    private val mMovie = ArrayList<MovieListVO>()
+    private val mMovieList = ArrayList<MovieListVO>()
     private val mMovieListLiveData = MutableLiveData<List<MovieListVO>>()
 
     private var progressLiveData: MutableLiveData<Int> = MutableLiveData<Int>()
 
-    fun loadSearchMovie(searchWord: String) {
+    private var navigateToMovieDetail: MutableLiveData<Long> = MutableLiveData()
 
-        mModel.loadSearchMovie(searchWord,
-            onSuccess = { movie ->
-                searchMovie.postValue(movie)
-                movie.movieList?.let {
-                    mMovie.addAll(it)
-                    mMovieListLiveData.value = mMovie
+    fun loadPopularMovie(){
+        mModel.loadPopularMovie(
+            onSuccess = {movie ->
+                popularMovie.postValue(movie)
+                movie.movieList?.let { movieList->
+                    mMovieList.addAll(movieList)
+                    mMovieListLiveData.value = mMovieList
                 }
             },
-            onFailure = {}
+            onFailure = {
+
+            }
         )
     }
 
-    fun loadMoreSearchMovie(searchWord: String) {
+    fun loadMorePopularMovie(){
         var page = 0L
         var totalPage = 0L
 
-        searchMovie.value?.page?.let {
+        popularMovie.value?.page?.let {
             page = it
         }
-        searchMovie.value?.totalPages?.let {
+        popularMovie.value?.totalPage?.let {
             totalPage = it
         }
 
         if (page <= totalPage) {
             page++
             progressLiveData.postValue(1)
-            mModel.loadMoreSearchMovie(BASE_URL, searchWord, page,
+            mModel.loadMorePopularMovie(
+                BASE_URL,  page,
                 onSuccess = {movie->
-                    searchMovie.postValue(movie)
+                    popularMovie.postValue(movie)
                     movie.movieList?.let {
-                        mMovie.addAll(it)
-                        mMovieListLiveData.value = mMovie
+                        mMovieList.addAll(it)
+                        mMovieListLiveData.value = mMovieList
                     }
                     progressLiveData.postValue(0)
                 },
@@ -64,22 +65,22 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
                     progressLiveData.postValue(0)
                 })
         }
+
+    }
+
+    fun getPopularMovieList(): MutableLiveData<List<MovieListVO>>{
+        return mMovieListLiveData
     }
 
     fun getShowOrHideProgress(): MutableLiveData<Int>{
         return progressLiveData
     }
 
-    fun getSearchMovieList(): MutableLiveData<List<MovieListVO>> {
-        return mMovieListLiveData
-    }
-
-    //delegate override function
     override fun onTapMovieItem(movieId: Long) {
         navigateToMovieDetail.postValue(movieId)
     }
 
-    fun getNavigateToMovieDetailLiveData(): LiveData<Long> {
+    fun getNavigateToMovieDetail(): MutableLiveData<Long>{
         return navigateToMovieDetail
     }
 

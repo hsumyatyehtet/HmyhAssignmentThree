@@ -8,14 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.kaopiz.kprogresshud.KProgressHUD
 import dev.hmyh.hmyhassignmentthree.R
 import kotlinx.android.synthetic.main.dialog_warning.view.*
 
 abstract class BaseFragment: Fragment() {
 
     private var alertDialog: AlertDialog? = null
+    lateinit var kProgressHUD: KProgressHUD
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        kProgressHUD = KProgressHUD.create(requireContext())
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -57,5 +60,14 @@ abstract class BaseFragment: Fragment() {
         alertDialog?.show()
     }
 
+    protected fun showProgressDialog() {
+        kProgressHUD.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+            .setLabel("Loading")
+            .show()
+    }
+
+    protected fun hideProgressDialog() {
+        kProgressHUD.dismiss()
+    }
 
 }

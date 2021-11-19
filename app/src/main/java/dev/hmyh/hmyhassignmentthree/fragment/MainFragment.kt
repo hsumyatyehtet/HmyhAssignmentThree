@@ -53,6 +53,23 @@ class MainFragment : Fragment() {
         ivSearch.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_searchFragment)
         }
+
+        tvNowPlayingSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_nowPlayingMovieSeeAllFragment)
+        }
+
+        tvPopularSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_popularMovieSeeAllFragment)
+        }
+
+        tvTopRatedSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_topRatedMovieSeeAllFragment)
+        }
+
+        tvUpcomingSeeAll.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_upcomingMovieSeeAllFragment)
+        }
+
     }
 
     private fun setUpViewModel() {
