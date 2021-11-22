@@ -21,9 +21,10 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 import android.content.Intent
 import android.net.Uri
 import dev.hmyh.hmyhassignmentthree.utils.getApiMovieDatePremier
+import dev.hmyh.hmyhassignmentthree.utils.getBundleMovieList
 
 
-class DetailFragment: BaseFragment() {
+class DetailFragment : BaseFragment() {
 
     private lateinit var mDetailFragmentViewModel: DetailFragmentViewModel
     private val args: DetailFragmentArgs by navArgs()
@@ -33,7 +34,7 @@ class DetailFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_detail,container,false)
+        return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +42,6 @@ class DetailFragment: BaseFragment() {
 
         setUpViewModel()
         setUpListener()
-        setUpOnUiReady()
         setUpDataObservation()
     }
 
@@ -52,40 +52,44 @@ class DetailFragment: BaseFragment() {
         mDetailFragmentViewModel.loadMovieDetailById(movieId)
 
         mDetailFragmentViewModel.getMovieDetailById(movieId).observe(viewLifecycleOwner, Observer {
-            it?.let { movieDetail->
+            it?.let { movieDetail ->
                 bindData(movieDetail)
             }
         })
 
         mDetailFragmentViewModel.getMovieVideo(movieId).observe(viewLifecycleOwner, Observer {
-            it?.let { movieVideo->
-                movieVideo.movieVideoList?.let { vidoeList->
-                    bindMovieVideoList(vidoeList)
+            it?.let { movieVideo ->
+                movieVideo.movieVideoList?.let { vidoeList ->
+                    bindMovieVideoList(movieId,vidoeList)
                 }
             }
         })
 
     }
 
-    private fun bindMovieVideoList(videoList: List<MovieVideoListVO>) {
+    private fun bindMovieVideoList(movieId: Long,videoList: List<MovieVideoListVO>) {
 
         rlPlayTrailer.setOnClickListener {
-
-            if (videoList.isEmpty()){
-
-                showAlertDialog("Hmyh Assignment Three","The video isn't available to play"){
-
+            if (videoList.isEmpty()) {
+                showAlertDialog("Hmyh Assignment Three", "The video isn't available to play") {
                 }
             }
-            else{
-                videoList[0].key?.let { key->
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("http://www.youtube.com/watch?v=$key")
-                        )
-                    )
-                }
+            else {
+                findNavController().navigate(
+                    R.id.action_detailFragment_to_movieListFragment,
+                    getBundleMovieList(movieId)
+                )
+
+                //code for movie play by youtube
+
+//                videoList[0].key?.let { key->
+//                    startActivity(
+//                        Intent(
+//                            Intent.ACTION_VIEW,
+//                            Uri.parse("http://www.youtube.com/watch?v=$key")
+//                        )
+//                    )
+//                }
             }
         }
 
@@ -93,10 +97,10 @@ class DetailFragment: BaseFragment() {
 
     private fun bindData(movieDetail: MovieDetailVO) {
         Glide.with(this)
-            .load(PHOTO_PATH+movieDetail.backDropPath)
+            .load(PHOTO_PATH + movieDetail.backDropPath)
             .into(ivLatestMovieDetailBg)
         Glide.with(this)
-            .load(PHOTO_PATH+movieDetail.posterPath)
+            .load(PHOTO_PATH + movieDetail.posterPath)
             .into(ivMovieImageDetail)
         tvMovieDetailTitle.text = movieDetail.title
         tvMovieDetailRating.text = movieDetail.voteAverage.toString()
@@ -116,16 +120,12 @@ class DetailFragment: BaseFragment() {
         tvPremiere.text = getApiMovieDatePremier(movieDetail.releaseDate.toString())
 
         rlGoHome.setOnClickListener {
-            movieDetail.homePage?.let { homePage->
+            movieDetail.homePage?.let { homePage ->
 
-                if (homePage.isEmpty()){
+                if (homePage.isEmpty()) {
+                    showAlertDialog("Hmyh Assignment Three", "There is no home page") {}
 
-                    showAlertDialog("Hmyh Assignment Three","There is no home page"){
-
-                    }
-
-                }
-                else{
+                } else {
                     startActivity(
                         Intent(
                             Intent.ACTION_VIEW,
@@ -137,12 +137,9 @@ class DetailFragment: BaseFragment() {
         }
     }
 
-    private fun setUpOnUiReady() {
-        mDetailFragmentViewModel.onUiReady()
-    }
-
     private fun setUpViewModel() {
-        mDetailFragmentViewModel = ViewModelProviders.of(this).get(DetailFragmentViewModel::class.java)
+        mDetailFragmentViewModel =
+            ViewModelProviders.of(this).get(DetailFragmentViewModel::class.java)
     }
 
     private fun setUpListener() {

@@ -9,3 +9,15 @@ fun getBundleMovieDetail(movieId: Long): Bundle{
     }
 
 }
+
+fun getBundleMovieList(movieId: Long): Bundle{
+    return Bundle().apply {
+        putLong("movie_id",movieId)
+    }
+}
+
+fun getBundleMovieVideoKey(movieKey: String): Bundle{
+    return Bundle().apply {
+        putString("movie_key",movieKey)
+    }
+}

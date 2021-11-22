@@ -11,12 +11,6 @@ class DetailFragmentViewModel: ViewModel() {
 
     private val mModel: HmyhAssignmentThreeModel = HmyhAssignmentThreeModelImpl
 
-  //  private val mMovieVideo: LiveData<MovieVideoVO> = mModel.getMovieVideo()
-
-    fun onUiReady(){
-
-    }
-
     fun loadMovieDetailById(movieId: Long){
         mModel.loadMovieDetail(movieId,onSuccess = {},onFailure = {})
         mModel.loadMovieVideo(movieId,onSuccess = {},onFailure = {})

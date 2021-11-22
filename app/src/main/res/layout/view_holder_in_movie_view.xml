@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_margin="@dimen/margin_small"
+    android:background="@color/white"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/margin_medium"
+    app:cardElevation="@dimen/margin_medium">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rlMovieView"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:elevation="@dimen/margin_medium"
+            android:background="@drawable/movie_view_bg">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_baseline_play_circle_outline" />
+
+        </RelativeLayout>
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/cvMovieView"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            app:cardBackgroundColor="@color/colorTransparent"-->
+<!--            app:cardCornerRadius="@dimen/margin_medium">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/ivMovieView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:src="@drawable/ic_launcher_background" />-->
+
+<!--        </androidx.cardview.widget.CardView>-->
+
+        <TextView
+            android:id="@+id/tvMovieViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_toEndOf="@+id/rlMovieView"
+            android:text="Vincenzo"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_3x" />
+
+        <TextView
+            android:id="@+id/tvMovieViewType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMovieViewTitle"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_toEndOf="@+id/rlMovieView"
+            android:text="Vincenzo"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_regular_2x" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
