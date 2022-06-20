@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -32,6 +33,14 @@ class MovieViewFragment: BaseFragment() {
         }
         else{
             setUpYoutubePlayerView(movieKey)
+        }
+
+        setUpListener()
+    }
+
+    private fun setUpListener() {
+        ivBackYoutubePlayer.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

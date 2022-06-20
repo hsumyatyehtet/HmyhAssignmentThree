@@ -6,39 +6,54 @@
     android:background="@color/background_color">
 
     <RelativeLayout
-        android:id="@+id/rlSearchLayout"
+        android:id="@+id/rlToolBar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="@dimen/margin_medium_2"
-        android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_marginEnd="@dimen/margin_medium_2"
-        android:background="@drawable/search_fragment_bg">
+        android:layout_height="?attr/actionBarSize">
 
         <ImageView
-            android:id="@+id/ivMovieSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/margin_medium_2"
-            android:src="@drawable/ic_baseline_search"
-            android:tint="@color/black"
-            tools:ignore="UseAppTint" />
+            android:id="@+id/ivBackSearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_baseline_navigate_before"
+            android:layout_centerVertical="true"/>
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etMovieSearch"
+        <RelativeLayout
+            android:id="@+id/rlSearchLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginEnd="@dimen/margin_medium"
-            android:layout_toEndOf="@+id/ivMovieSearch"
-            android:background="@null"
-            android:hint="Search"
-            android:lines="1"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColorHint="#80646464"
-            android:textSize="@dimen/text_small" />
+            android:layout_toEndOf="@+id/ivBackSearch"
+            android:layout_marginStart="@dimen/margin_medium_2"
+            android:layout_marginEnd="@dimen/margin_medium_2"
+            android:background="@drawable/search_fragment_bg">
+
+            <ImageView
+                android:id="@+id/ivMovieSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:src="@drawable/ic_baseline_search"
+                android:tint="@color/black"
+                tools:ignore="UseAppTint" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etMovieSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:layout_toEndOf="@+id/ivMovieSearch"
+                android:background="@null"
+                android:hint="Search"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColorHint="#80646464"
+                android:textSize="@dimen/text_small" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -46,7 +61,7 @@
         android:id="@+id/rlNewListContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rlSearchLayout"
+        android:layout_below="@+id/rlToolBar"
         android:layout_marginHorizontal="@dimen/margin_medium">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
