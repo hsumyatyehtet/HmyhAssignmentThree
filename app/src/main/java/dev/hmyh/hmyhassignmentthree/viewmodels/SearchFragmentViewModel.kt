@@ -1,5 +1,6 @@
 package dev.hmyh.hmyhassignmentthree.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +11,8 @@ import dev.hmyh.hmyhassignmentthree.data.vos.MovieListVO
 import dev.hmyh.hmyhassignmentthree.data.vos.SearchMovieVO
 import dev.hmyh.hmyhassignmentthree.delegate.MovieListDelegate
 import dev.hmyh.hmyhassignmentthree.utils.BASE_URL
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
 
@@ -23,17 +26,24 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
 
     private var progressLiveData: MutableLiveData<Int> = MutableLiveData<Int>()
 
+    private var mErrorMessage: MutableLiveData<String> = MutableLiveData<String>()
+
     fun loadSearchMovie(searchWord: String) {
 
         mModel.loadSearchMovie(searchWord,
             onSuccess = { movie ->
                 searchMovie.postValue(movie)
                 movie.movieList?.let {
+                    mMovie.clear()
                     mMovie.addAll(it)
                     mMovieListLiveData.value = mMovie
                 }
             },
-            onFailure = {}
+            onFailure = {
+                GlobalScope.launch {
+                    mErrorMessage.postValue(it)
+                }
+            }
         )
     }
 
@@ -62,6 +72,9 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
                 },
                 onFailure = {
                     progressLiveData.postValue(0)
+                    GlobalScope.launch {
+                        mErrorMessage.postValue(it)
+                    }
                 })
         }
     }
@@ -81,6 +94,10 @@ class SearchFragmentViewModel : ViewModel(), MovieListDelegate {
 
     fun getNavigateToMovieDetailLiveData(): LiveData<Long> {
         return navigateToMovieDetail
+    }
+
+    fun getErrorMessage(): LiveData<String>{
+        return mErrorMessage
     }
 
 }

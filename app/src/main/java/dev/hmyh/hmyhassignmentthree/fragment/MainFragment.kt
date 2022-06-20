@@ -70,6 +70,10 @@ class MainFragment : Fragment() {
             findNavController().navigate(R.id.action_mainFragment_to_upcomingMovieSeeAllFragment)
         }
 
+        ivAbout.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_aboutFragment)
+        }
+
     }
 
     private fun setUpViewModel() {

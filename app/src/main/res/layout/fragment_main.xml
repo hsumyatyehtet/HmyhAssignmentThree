@@ -5,13 +5,31 @@
     android:background="@color/background_color">
 
     <ImageView
+        android:id="@+id/ivSearch"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_baseline_search"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:src="@drawable/ic_baseline_search" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:text="Movie DB"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_regular_3x"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ivAbout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/margin_medium_2"
-        android:layout_marginTop="@dimen/margin_medium_2"
-        android:id="@+id/ivSearch"/>
+        android:src="@drawable/ic_baseline_info_24" />
 
     <TextView
         android:id="@+id/tvCurrentDate"
@@ -19,16 +37,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium_2"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_medium_2"
         android:text="date"
         android:textColor="@color/date_txt_color"
-        android:textSize="@dimen/text_regular_2x"
+        android:textSize="@dimen/text_regular"
         android:textStyle="normal" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_below="@+id/tvCurrentDate">
 
         <RelativeLayout
@@ -42,7 +60,7 @@
                 android:layout_marginStart="@dimen/margin_medium_2"
                 android:text="Now Playing Movie List"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_3x"
+                android:textSize="@dimen/text_regular_2x"
                 android:textStyle="bold" />
 
             <TextView
@@ -74,7 +92,7 @@
                 android:layout_marginTop="@dimen/margin_large"
                 android:text="Popular Movie List"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_3x"
+                android:textSize="@dimen/text_regular_2x"
                 android:textStyle="bold" />
 
             <TextView
@@ -106,7 +124,7 @@
                 android:layout_marginTop="@dimen/margin_large"
                 android:text="Top Rated Movie List"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_3x"
+                android:textSize="@dimen/text_regular_2x"
                 android:textStyle="bold" />
 
             <TextView
@@ -138,7 +156,7 @@
                 android:layout_marginTop="@dimen/margin_large"
                 android:text="Upcoming Movie List"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_3x"
+                android:textSize="@dimen/text_regular_2x"
                 android:textStyle="bold" />
 
             <TextView

@@ -13,9 +13,9 @@
             android:id="@+id/ivBackMovieList"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/margin_card_medium_2"
-            android:src="@drawable/ic_baseline_navigate_before"
-            android:layout_centerVertical="true"/>
+            android:src="@drawable/ic_baseline_navigate_before" />
 
         <TextView
             android:id="@+id/tvMovieList"

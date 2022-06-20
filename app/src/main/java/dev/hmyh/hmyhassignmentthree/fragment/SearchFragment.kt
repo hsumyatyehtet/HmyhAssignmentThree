@@ -50,6 +50,13 @@ class SearchFragment : BaseFragment() {
 
     private fun setUpListener() {
 
+        swipeRefreshMovieSearch.setOnRefreshListener {
+            swipeRefreshMovieSearch.isRefreshing = false
+            etMovieSearch.text?.clear()
+            mSearchFragmentViewModel.loadSearchMovie("")
+        }
+
+
         val handler = Handler(Looper.getMainLooper())
         etMovieSearch.addTextChangedListener(object : TextWatcher {
 
@@ -123,6 +130,8 @@ class SearchFragment : BaseFragment() {
                 mMovieList.addAll(searchMovieList.distinctBy { movieDistinctList ->
                     movieDistinctList.id
                 })
+                llNoResultContainer.visibility = View.GONE
+                rvSearch.visibility = View.VISIBLE
                 mSearchMovieListAdapter.setNewData(mMovieList)
             }
         })
@@ -146,6 +155,19 @@ class SearchFragment : BaseFragment() {
                     showProgressDialog()
                 } else {
                     hideProgressDialog()
+                }
+            }
+        })
+
+        mSearchFragmentViewModel.getErrorMessage().observe(viewLifecycleOwner, Observer {
+            it?.let { errorMessage->
+                if (errorMessage.contains("HTTP 422")){
+                    llNoResultContainer.visibility = View.VISIBLE
+                    rvSearch.visibility = View.GONE
+                }
+                else{
+                    llNoResultContainer.visibility = View.GONE
+                    rvSearch.visibility = View.VISIBLE
                 }
             }
         })
