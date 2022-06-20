@@ -34,6 +34,7 @@
         </RelativeLayout>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvDataSourceContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_medium_2"
@@ -46,24 +47,181 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/ivDataSourceTitle"
+                    android:id="@+id/tvDataSourceTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
                     android:layout_marginVertical="@dimen/margin_medium"
-                    android:layout_marginStart="@dimen/margin_small"
                     android:text="Api Data Source"
                     android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/text_regular"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/ivDataSourceDescription"
+                    android:id="@+id/tvDataSourceDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small"
-                    android:layout_below="@+id/ivDataSourceTitle"
+                    android:layout_below="@+id/tvDataSourceTitle"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
                     android:layout_marginBottom="@dimen/margin_medium"
                     android:text="The Movie DB"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvDesignContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:cardCornerRadius="@dimen/margin_small"
+            app:cardElevation="1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvDesignTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginVertical="@dimen/margin_medium"
+                    android:text="Design Source"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDataDesigneDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDesignTitle"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:text="Dribbble"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:cardCornerRadius="@dimen/margin_small"
+            app:cardElevation="1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvIconTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginVertical="@dimen/margin_medium"
+                    android:text="Icon Source"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvIconDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvIconTitle"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:text="Flaticon"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:cardCornerRadius="@dimen/margin_small"
+            app:cardElevation="1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvYoutubePlayerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginVertical="@dimen/margin_medium"
+                    android:text="Youtube Player"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvYoutubePlaryerDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvYoutubePlayerTitle"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:text="PierfrancescoSoffritti"
+                    android:textColor="@color/textColorSecondary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginTop="@dimen/margin_large"
+            app:cardCornerRadius="@dimen/margin_small"
+            app:cardElevation="1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvDeveloperTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginVertical="@dimen/margin_medium"
+                    android:text="Developed by"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="@dimen/text_regular"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDeveloperDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDeveloperTitle"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:text="Hsu Myat Ye Htet"
                     android:textColor="@color/textColorSecondary"
                     android:textSize="@dimen/text_regular"
                     android:textStyle="bold" />
