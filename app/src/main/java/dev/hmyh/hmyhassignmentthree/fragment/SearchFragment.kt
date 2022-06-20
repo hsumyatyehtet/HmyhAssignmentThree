@@ -50,6 +50,10 @@ class SearchFragment : BaseFragment() {
 
     private fun setUpListener() {
 
+        ivBackSearch.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         swipeRefreshMovieSearch.setOnRefreshListener {
             swipeRefreshMovieSearch.isRefreshing = false
             etMovieSearch.text?.clear()
