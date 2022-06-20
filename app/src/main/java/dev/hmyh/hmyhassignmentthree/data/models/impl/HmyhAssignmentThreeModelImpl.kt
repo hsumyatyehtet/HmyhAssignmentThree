@@ -233,7 +233,7 @@ object HmyhAssignmentThreeModelImpl: BaseAppModel(),HmyhAssignmentThreeModel {
                     onSuccess(searchMovieVideo)
                 }
             }, {
-
+                onFailure(it.toString())
             })
     }
 
