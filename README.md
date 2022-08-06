@@ -4,6 +4,13 @@
 
 ## Movie app using The Movie Database
 
+### App Features
+ 
+ * Home screen include Now Playing Movie List , Popular Movie List, Top Rated Movie List, Upcoming Movie List show 20 items and when See all click movie list show all items and using paging.
+ * Detail screen show movie data ,can play movie trailer and show movie home screen.
+ * Search screen can search movie and add paging.
+ * About screen show Api resource, Design source, icon source , Youtube player library and developer name.
+
 ### Technical Features
 
 * Android for App Development
@@ -14,6 +21,9 @@
 * Room Database use for local database
 * API request use from The Movie Database
 * Design use from the dribbble
+
+
+<img width="1080" alt="MovieDB" src="https://user-images.githubusercontent.com/53394999/183258547-3579c2e4-3a64-49b9-aa95-46a7e9c6ae94.png">
 
 
 ![Screenshot_2022-06-21-00-41-23-236_dev hmyh hmyhassignmentthree](https://user-images.githubusercontent.com/53394999/174660373-7b02d3e9-8f4c-487e-8c82-2dc41cbe7e0b.jpg)
